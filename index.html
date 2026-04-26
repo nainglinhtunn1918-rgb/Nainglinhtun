@@ -3,238 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Naing Lin Htun | Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
-    
-    <style>
-        /* Base Styles & Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: #000;
-            color: #fff;
-            font-family: 'Space Grotesk', sans-serif;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
-
-        /* Navigation Bar */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 2rem 5rem;
-            animation: fadeInDown 1s ease-out;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 2.5rem;
-        }
-
-        .nav-links li a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 1rem;
-            font-weight: 500;
-            position: relative;
-            padding-bottom: 5px;
-            transition: opacity 0.3s ease;
-        }
-
-        .nav-links li a:hover {
-            opacity: 0.7;
-        }
-
-        /* Underline Hover Effect for Nav */
-        .nav-links li a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: #fff;
-            transition: width 0.3s ease;
-        }
-
-        .nav-links li a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Section */
-        .hero {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 0 10rem;
-            animation: fadeInUp 1s ease-out 0.5s both;
-        }
-
-        .greeting {
-            font-size: 1.5rem;
-            font-weight: 300;
-            margin-bottom: 1rem;
-            color: #ccc;
-        }
-
-        /* Name Swap Animation */
-        h1 {
-            font-size: 5rem;
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .name-container {
-            display: grid;
-            color: #fff;
-        }
-
-        .name-container span {
-            grid-area: 1 / 1;
-        }
-
-        .name-primary {
-            animation: fadeOutSwap 8s infinite;
-        }
-
-        .name-secondary {
-            opacity: 0;
-            animation: fadeInSwap 8s infinite;
-        }
-
-        /* Role Text Slider Animation */
-        h2 {
-            font-size: 2.5rem;
-            font-weight: 300;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .role-roller {
-            height: 3rem; /* Matches font size to hide overflow */
-            overflow: hidden;
-            display: inline-block;
-            vertical-align: bottom;
-        }
-
-        .role-inner {
-            display: flex;
-            flex-direction: column;
-            /* Cubic-bezier gives it a dynamic "snap" effect */
-            animation: slideRoles 9s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
-        }
-
-        .role-text {
-            height: 3rem;
-            display: flex;
-            align-items: center;
-            font-weight: 700;
-        }
-
-        /* --- Keyframes --- */
-        
-        /* Nav and Hero load-in */
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Name Fading */
-        @keyframes fadeOutSwap {
-            0%, 40% { opacity: 1; filter: blur(0px); transform: scale(1); }
-            45%, 95% { opacity: 0; filter: blur(5px); transform: scale(0.98); }
-            100% { opacity: 1; filter: blur(0px); transform: scale(1); }
-        }
-
-        @keyframes fadeInSwap {
-            0%, 40% { opacity: 0; filter: blur(5px); transform: scale(0.98); }
-            45%, 95% { opacity: 1; filter: blur(0px); transform: scale(1); }
-            100% { opacity: 0; filter: blur(5px); transform: scale(0.98); }
-        }
-
-        /* Role Sliding */
-        @keyframes slideRoles {
-            0%, 20% { transform: translateY(0); }           /* Graphic Designer */
-            33.33%, 53.33% { transform: translateY(-3rem); }  /* Video Editor */
-            66.66%, 86.66% { transform: translateY(-6rem); }  /* Digital Designer */
-            100% { transform: translateY(0); }              /* Back to start */
-        }
-        
-        /* Responsive adjustments */
-        @media (max-width: 1024px) {
-            nav { padding: 2rem 2rem; }
-            .hero { padding: 0 3rem; }
-            h1 { font-size: 3.5rem; }
-            h2 { font-size: 2rem; }
-            .role-roller, .role-text { height: 2.4rem; }
-            @keyframes slideRoles {
-                0%, 20% { transform: translateY(0); }
-                33.33%, 53.33% { transform: translateY(-2.4rem); }
-                66.66%, 86.66% { transform: translateY(-4.8rem); }
-                100% { transform: translateY(0); }
-            }
-        }
-    </style>
+    <title>Naing Lin Htun | Symbol</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <nav>
-        <div class="logo">Portfolio</div>
+    <div id="preloader">
+        <h1 class="loader-logo">SYMBOL</h1>
+    </div>
+
+    <nav class="navbar">
+        <div class="logo">NAING LIN HTUN</div>
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
-            <li><a href="#showcase">Showcase</a></li>
-            <li><a href="#cv">CV</a></li>
+            <li><a href="#work">Work</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 
-    <main class="hero">
-        <div class="greeting">Hello,</div>
-        <h1>
-            My name is 
-            <span class="name-container">
-                <span class="name-primary">Naing Lin Htun.</span>
-                <span class="name-secondary">Symbol.</span>
-            </span>
-        </h1>
-        <h2>
-            I'm a
-            <span class="role-roller">
-                <span class="role-inner">
-                    <span class="role-text">Graphic Designer.</span>
-                    <span class="role-text">Video Editor.</span>
-                    <span class="role-text">Digital Designer.</span>
-                </span>
-            </span>
-        </h2>
-    </main>
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="main-title">Naing Lin Htun</h1>
+            <div class="typing-container">
+                <span id="typing-text"></span><span class="cursor">&nbsp;</span>
+            </div>
+            <div class="hero-btns">
+                <a href="#work" class="btn-primary">View Projects</a>
+            </div>
+        </div>
+    </section>
 
+    <div class="marquee-wrapper">
+        <div class="marquee-content">
+            <span>ADOBE PHOTOSHOP</span> <span>•</span>
+            <span>PREMIERE PRO</span> <span>•</span>
+            <span>AFTER EFFECTS</span> <span>•</span>
+            <span>ILLUSTRATOR</span> <span>•</span>
+            <span>FIGMA</span> <span>•</span>
+            <span>COLOR GRADING</span> <span>•</span>
+            <span>ADOBE PHOTOSHOP</span> <span>•</span>
+            <span>PREMIERE PRO</span> <span>•</span>
+            <span>AFTER EFFECTS</span> <span>•</span>
+            <span>ILLUSTRATOR</span> <span>•</span>
+            <span>FIGMA</span> <span>•</span>
+            <span>COLOR GRADING</span> <span>•</span>
+        </div>
+    </div>
+
+    <section class="about section-padding" id="about">
+        <div class="container about-grid">
+            <div class="about-text fade-scroll">
+                <h2 class="section-title">Who is <span class="highlight">Symbol?</span></h2>
+                <p>I am a passionate Graphic Designer and Video Editor from Myanmar. I specialize in creating cinematic visuals, modern brand identities, and engaging video content.</p>
+                <div class="skills">
+                    <span class="skill-tag">Brand Identity</span>
+                    <span class="skill-tag">Video Editing</span>
+                    <span class="skill-tag">Motion Graphics</span>
+                    <span class="skill-tag">UI/UX</span>
+                </div>
+            </div>
+            <div class="about-image fade-scroll">
+                <div class="image-placeholder">
+                    <p>Your Profile Photo Here</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="work section-padding" id="work">
+        <div class="container">
+            <h2 class="section-title text-center fade-scroll">Selected <span class="highlight">Works</span></h2>
+            <div class="portfolio-grid fade-scroll">
+                <div class="portfolio-card">
+                    <div class="card-img placeholder-img">Image 1</div>
+                    <div class="card-info">
+                        <h3>Brand Identity</h3>
+                        <p>Graphic Design</p>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <div class="card-img placeholder-img video-card">▶ Play Here</div>
+                    <div class="card-info">
+                        <h3>Cinematic B-Roll</h3>
+                        <p>Video Editing</p>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <div class="card-img placeholder-img">Image 3</div>
+                    <div class="card-info">
+                        <h3>Social Media Ads</h3>
+                        <p>Marketing Design</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact section-padding" id="contact">
+        <div class="container contact-grid fade-scroll">
+            <div class="contact-info">
+                <h2 class="section-title">Let's <span class="highlight">Talk</span></h2>
+                <p>Ready to start your next project? Drop me a message and let's create something amazing together.</p>
+                <div class="contact-details">
+                    <p>📧 email@example.com</p>
+                    <p>📞 +95 9 123 456 789</p>
+                    <p>📍 Yangon, Myanmar</p>
+                </div>
+            </div>
+            <form class="contact-form">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea rows="5" placeholder="Your Message" required></textarea>
+                <button type="submit" class="btn-primary">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
 </body>
 </html>
