@@ -9,6 +9,9 @@
 </head>
 <body>
 
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
     <div id="preloader">
         <h1 class="loader-logo">SYMBOL</h1>
     </div>
@@ -27,10 +30,10 @@
         <div class="hero-content">
             <h1 class="main-title">Naing Lin Htun</h1>
             <div class="typing-container">
-                <span id="typing-text"></span><span class="cursor">&nbsp;</span>
+                <span id="typing-text"></span><span class="cursor-blink">&nbsp;</span>
             </div>
             <div class="hero-btns">
-                <a href="#work" class="btn-primary">View Projects</a>
+                <a href="#work" class="btn-primary hover-target">View Projects</a>
             </div>
         </div>
     </section>
@@ -65,7 +68,7 @@
                 </div>
             </div>
             <div class="about-image fade-scroll">
-                <div class="image-placeholder">
+                <div class="image-placeholder hover-target">
                     <p>Your Profile Photo Here</p>
                 </div>
             </div>
@@ -76,22 +79,22 @@
         <div class="container">
             <h2 class="section-title text-center fade-scroll">Selected <span class="highlight">Works</span></h2>
             <div class="portfolio-grid fade-scroll">
-                <div class="portfolio-card">
-                    <div class="card-img placeholder-img">Image 1</div>
+                <div class="portfolio-card hover-target">
+                    <img src="https://via.placeholder.com/600x400/111111/555555?text=Brand+Identity" alt="Project 1">
                     <div class="card-info">
                         <h3>Brand Identity</h3>
                         <p>Graphic Design</p>
                     </div>
                 </div>
-                <div class="portfolio-card">
-                    <div class="card-img placeholder-img video-card">▶ Play Here</div>
+                <div class="portfolio-card hover-target">
+                    <img src="https://via.placeholder.com/600x400/1a1a2e/4a4e69?text=Cinematic+B-Roll" alt="Project 2">
                     <div class="card-info">
                         <h3>Cinematic B-Roll</h3>
                         <p>Video Editing</p>
                     </div>
                 </div>
-                <div class="portfolio-card">
-                    <div class="card-img placeholder-img">Image 3</div>
+                <div class="portfolio-card hover-target">
+                    <img src="https://via.placeholder.com/600x400/222222/888888?text=Social+Media+Ads" alt="Project 3">
                     <div class="card-info">
                         <h3>Social Media Ads</h3>
                         <p>Marketing Design</p>
@@ -113,10 +116,10 @@
                 </div>
             </div>
             <form class="contact-form">
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Your Email" required>
-                <textarea rows="5" placeholder="Your Message" required></textarea>
-                <button type="submit" class="btn-primary">Send Message</button>
+                <input type="text" placeholder="Your Name" class="hover-target" required>
+                <input type="email" placeholder="Your Email" class="hover-target" required>
+                <textarea rows="5" placeholder="Your Message" class="hover-target" required></textarea>
+                <button type="submit" class="btn-primary hover-target">Send Message</button>
             </form>
         </div>
     </section>
