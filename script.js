@@ -1,12 +1,14 @@
-// 1. Preloader (သေချာပေါက် ပျောက်သွားစေရန် DOMContentLoaded ကိုပါ အသုံးပြုထားသည်)
+// 1. Preloader (Loading ပြီးဆုံးရန် စောင့်ဆိုင်းခြင်း)
 document.addEventListener("DOMContentLoaded", () => {
     const preloader = document.getElementById("preloader");
+    
+    // Animation progress ပြီးဆုံးရန် 1.8 စက္ကန့် စောင့်မည်
     setTimeout(() => {
         if(preloader) {
             preloader.style.opacity = "0";
             preloader.style.visibility = "hidden";
         }
-    }, 1500); // 1.5 စက္ကန့်အကြာ
+    }, 1800); 
 });
 
 // 2. Custom Cursor Logic
@@ -14,39 +16,35 @@ const cursor = document.querySelector('.cursor');
 const follower = document.querySelector('.cursor-follower');
 
 document.addEventListener('mousemove', (e) => {
-    // ပင်မ Cursor အစက်လေး
     cursor.style.left = e.clientX + 'px';
     cursor.style.top = e.clientY + 'px';
     
-    // နောက်ကလိုက်မည့် အဝိုင်းလေး (အနည်းငယ် နောက်ကျပြီး လိုက်မည်)
     setTimeout(() => {
         follower.style.left = e.clientX + 'px';
         follower.style.top = e.clientY + 'px';
     }, 50);
 });
 
-// Button နှင့် Portfolio များပေါ် ရောက်လျှင် Cursor ပုံစံပြောင်းရန်
 const hoverTargets = document.querySelectorAll('.hover-target, a');
-
 hoverTargets.forEach(target => {
     target.addEventListener('mouseenter', () => {
-        cursor.style.transform = 'translate(-50%, -50%) scale(0)'; // အလယ်အစက်ကို ဖျောက်မည်
-        follower.style.width = '60px'; // အဝိုင်းကို ကြီးစေမည်
+        cursor.style.transform = 'translate(-50%, -50%) scale(0)';
+        follower.style.width = '60px'; 
         follower.style.height = '60px';
         follower.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
         follower.style.border = '1px solid rgba(255, 255, 255, 0.8)';
     });
     
     target.addEventListener('mouseleave', () => {
-        cursor.style.transform = 'translate(-50%, -50%) scale(1)'; // အလယ်အစက် ပြန်ပေါ်မည်
-        follower.style.width = '40px'; // အဝိုင်း မူလအရွယ် ပြန်ဖြစ်မည်
+        cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+        follower.style.width = '40px'; 
         follower.style.height = '40px';
         follower.style.backgroundColor = 'transparent';
         follower.style.border = '1px solid rgba(255, 255, 255, 0.4)';
     });
 });
 
-// 3. Typing Animation
+// 3. Typing Animation (Preloader ပိတ်သွားမှ စတင်ရန် အချိန်ညှိထားသည်)
 const typedTextSpan = document.getElementById("typing-text");
 const textArray = ["I AM A GRAPHIC DESIGNER", "I AM A VIDEO EDITOR"];
 const typingDelay = 100;
@@ -77,7 +75,7 @@ function erase() {
     }
 }
 document.addEventListener("DOMContentLoaded", () => {
-    setTimeout(type, 1800);
+    setTimeout(type, 2000); // Preloader ပျောက်ပြီးမှ စာစရိုက်ရန် စက္ကန့်ညှိထားသည်
 });
 
 // 4. Scroll Fade-in Animation
