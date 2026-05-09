@@ -4,7 +4,7 @@ html { scroll-behavior: smooth; }
 body { background-color: #050505; color: #fff; overflow-x: hidden; cursor: none; }
 .container { width: 90%; max-width: 1200px; margin: 0 auto; }
 .section-padding { padding: 100px 0; }
-.highlight { color: #1e40af; } /* Brand Blue Highlight */
+.highlight { color: #1e40af; } 
 .section-title { font-size: 2.5rem; margin-bottom: 20px; font-weight: 700; }
 .text-center { text-align: center; margin-bottom: 50px; }
 
@@ -13,39 +13,20 @@ body { background-color: #050505; color: #fff; overflow-x: hidden; cursor: none;
 .cursor-follower { width: 40px; height: 40px; border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 50%; position: fixed; pointer-events: none; z-index: 10000; transform: translate(-50%, -50%); transition: width 0.2s, height 0.2s, background-color 0.2s; }
 a, button, input, textarea { cursor: none; }
 
-/* --- 1. Preloader (အသစ်ပြင်ဆင်ထားသော ဒီဇိုင်း) --- */
+/* --- 1. Preloader --- */
 #preloader { 
     position: fixed; top: 0; left: 0; width: 100%; height: 100vh; 
-    background: #1e40af; /* ပိုမိုလှပသော Brand Blue နောက်ခံ */
+    background: #1e40af; 
     background: radial-gradient(circle at center, #2563eb, #1e40af);
     display: flex; justify-content: center; align-items: center; 
     z-index: 10005; transition: opacity 0.8s ease, visibility 0.8s ease; 
 }
-.loader-content {
-    display: flex; flex-direction: column; align-items: center; gap: 15px;
-}
-.loader-logo { 
-    font-size: clamp(1.2rem, 4vw, 2rem); letter-spacing: 5px; color: #fff; 
-    font-weight: 700; animation: fadeInUp 0.8s ease-out; 
-}
-/* လှပသော Loading Progress Bar */
-.loading-bar {
-    width: 200px; height: 2px; background: rgba(255, 255, 255, 0.2);
-    border-radius: 4px; overflow: hidden; position: relative;
-    animation: fadeInUp 0.8s ease-out 0.2s both;
-}
-.progress {
-    width: 0%; height: 100%; background: #fff;
-    animation: loadingProgress 1.6s cubic-bezier(0.8, 0, 0.2, 1) forwards;
-}
-@keyframes fadeInUp { 
-    from { opacity: 0; transform: translateY(15px); } 
-    to { opacity: 1; transform: translateY(0); } 
-}
-@keyframes loadingProgress { 
-    0% { width: 0%; } 
-    100% { width: 100%; } 
-}
+.loader-content { display: flex; flex-direction: column; align-items: center; gap: 15px; }
+.loader-logo { font-size: clamp(1.2rem, 4vw, 2rem); letter-spacing: 5px; color: #fff; font-weight: 700; animation: fadeInUp 0.8s ease-out; }
+.loading-bar { width: 200px; height: 2px; background: rgba(255, 255, 255, 0.2); border-radius: 4px; overflow: hidden; position: relative; animation: fadeInUp 0.8s ease-out 0.2s both; }
+.progress { width: 0%; height: 100%; background: #fff; animation: loadingProgress 1.6s cubic-bezier(0.8, 0, 0.2, 1) forwards; }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes loadingProgress { 0% { width: 0%; } 100% { width: 100%; } }
 
 /* --- Navigation --- */
 .navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; position: fixed; width: 100%; top: 0; z-index: 999; background: rgba(5, 5, 5, 0.8); backdrop-filter: blur(10px); }
@@ -57,10 +38,21 @@ a, button, input, textarea { cursor: none; }
 /* --- 2. Hero Section --- */
 .hero { height: 100vh; display: flex; justify-content: center; align-items: center; text-align: center; background: radial-gradient(circle at top, #111827 0%, #050505 60%); }
 .main-title { font-size: clamp(3rem, 8vw, 5.5rem); font-weight: 700; margin-bottom: 15px; }
-.typing-container { font-size: 1.2rem; color: #aaa; letter-spacing: 2px; margin-bottom: 40px; min-height: 30px; }
-#typing-text { color: #fff; }
-.cursor-blink { display: inline-block; width: 2px; background-color: #fff; animation: blink 0.7s infinite; }
-@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+/* Title Swap Animation */
+#swap-title { display: inline-block; opacity: 0; }
+.title-fade-in { animation: fadeIn 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
+.title-fade-out { animation: fadeOut 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
+@keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+@keyframes fadeOut { from { opacity: 1; transform: scale(1); } to { opacity: 0; transform: scale(0.95); } }
+
+/* Falling Text Animation */
+.falling-text-container { font-size: 1.2rem; color: #aaa; letter-spacing: 2px; margin-bottom: 40px; min-height: 30px; position: relative; overflow: hidden; display: flex; justify-content: center; align-items: center; }
+#falling-text { display: inline-block; color: #fff; opacity: 0; }
+.text-drop-in { animation: dropIn 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
+.text-drop-out { animation: dropOut 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
+@keyframes dropIn { 0% { transform: translateY(-30px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
+@keyframes dropOut { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(30px); opacity: 0; } }
 
 .btn-primary { background: #fff; color: #000; padding: 12px 30px; text-decoration: none; border-radius: 30px; font-weight: 600; display: inline-block; border: none; transition: 0.3s; }
 .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(255,255,255,0.15); }
