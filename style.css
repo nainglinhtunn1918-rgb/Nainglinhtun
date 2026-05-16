@@ -21,7 +21,8 @@ body { background-color: #050505; color: #fff; overflow-x: hidden; cursor: none;
 /* Navbar */
 .navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; position: fixed; width: 100%; top: 0; z-index: 999; background: rgba(5, 5, 5, 0.8); backdrop-filter: blur(10px); }
 .nav-links { list-style: none; display: flex; gap: 30px; }
-.nav-links a { text-decoration: none; color: #aaa; font-size: 0.9rem; }
+.nav-links a { text-decoration: none; color: #aaa; font-size: 0.9rem; transition: 0.3s; }
+.nav-links a:hover { color: #fff; }
 
 /* Hero */
 .hero { height: 100vh; display: flex; justify-content: center; align-items: center; text-align: center; }
@@ -36,37 +37,29 @@ body { background-color: #050505; color: #fff; overflow-x: hidden; cursor: none;
 .drop-out { opacity: 0; transform: translateY(30px); }
 .drop-in { opacity: 1; transform: translateY(0); }
 
-.btn-primary { background: #fff; color: #000; padding: 12px 30px; text-decoration: none; border-radius: 30px; font-weight: 600; }
+/* Buttons */
+.btn-primary { background: #fff; color: #000; padding: 12px 30px; text-decoration: none; border-radius: 30px; font-weight: 600; display: inline-block; cursor: none; border: none; transition: 0.3s; font-size: 1rem; }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(255,255,255,0.15); }
+.btn-secondary { background: transparent; color: #fff; padding: 12px 30px; text-decoration: none; border-radius: 30px; font-weight: 600; display: inline-block; cursor: none; border: 1px solid #fff; transition: 0.3s; font-size: 1rem; }
+.btn-secondary:hover { background: rgba(255,255,255,0.1); transform: translateY(-3px); }
 
-/* --- 3. Logo Marquee (ပြင်ဆင်ထားသော အပိုင်း) --- */
-.marquee-wrapper { 
-    width: 100%; 
-    overflow: hidden; 
-    background: #0a0a0a; 
-    padding: 40px 0; 
-    border-top: 1px solid #1a1a1a; 
-    border-bottom: 1px solid #1a1a1a; 
-    display: flex;
-}
-.marquee-content { 
-    display: flex; 
-    align-items: center; 
-    gap: 100px; /* Logo များကြား အကွာအဝေး */
-    animation: scrollLogos 30s linear infinite; 
-}
-.marquee-content img { 
-    height: 45px; /* Logo များ၏ အရွယ်အစား */
-    filter: grayscale(100%) opacity(0.4); 
-    transition: 0.4s ease; 
-}
-.marquee-content img:hover { 
-    filter: grayscale(0%) opacity(1); 
-    transform: scale(1.1); 
-}
-@keyframes scrollLogos { 
-    from { transform: translateX(0); } 
-    to { transform: translateX(-50%); } 
-}
+/* --- CV Modal Popup Style (အသစ်) --- */
+.modal { display: none; position: fixed; z-index: 5000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease; }
+.modal.show { display: flex; opacity: 1; }
+.modal-content { background-color: #111; padding: 40px; border-radius: 15px; border: 1px solid #333; text-align: center; max-width: 400px; width: 90%; position: relative; transform: translateY(-30px); transition: transform 0.3s ease; }
+.modal.show .modal-content { transform: translateY(0); }
+.close-btn { color: #888; float: right; font-size: 28px; font-weight: bold; position: absolute; top: 15px; right: 20px; cursor: none; transition: 0.3s; }
+.close-btn:hover { color: #fff; }
+.modal-title { font-size: 1.8rem; margin-bottom: 10px; color: #fff; }
+.modal-desc { font-size: 0.9rem; color: #aaa; margin-bottom: 30px; line-height: 1.5; }
+.modal-actions { display: flex; flex-direction: column; gap: 15px; }
+
+/* Marquee */
+.marquee-wrapper { width: 100%; overflow: hidden; background: #0a0a0a; padding: 40px 0; border-top: 1px solid #1a1a1a; border-bottom: 1px solid #1a1a1a; display: flex; }
+.marquee-content { display: flex; align-items: center; gap: 100px; animation: scrollLogos 30s linear infinite; }
+.marquee-content img { height: 45px; filter: grayscale(100%) opacity(0.4); transition: 0.4s ease; }
+.marquee-content img:hover { filter: grayscale(0%) opacity(1); transform: scale(1.1); }
+@keyframes scrollLogos { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
 /* Sections */
 .about-grid, .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
@@ -78,7 +71,7 @@ body { background-color: #050505; color: #fff; overflow-x: hidden; cursor: none;
 .portfolio-card { position: relative; border-radius: 10px; overflow: hidden; aspect-ratio: 16/9; background: #111; }
 .portfolio-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
 .portfolio-card:hover img { transform: scale(1.1); filter: brightness(0.4); }
-.card-info { position: absolute; bottom: 0; padding: 30px; opacity: 0; transform: translateY(20px); transition: 0.4s; width: 100%; }
+.card-info { position: absolute; bottom: 0; padding: 30px; opacity: 0; transform: translateY(20px); transition: 0.4s; width: 100%; background: linear-gradient(transparent, rgba(0,0,0,0.9)); }
 .portfolio-card:hover .card-info { opacity: 1; transform: translateY(0); }
 
 /* Contact Form */
