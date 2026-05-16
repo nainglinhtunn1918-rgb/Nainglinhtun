@@ -45,7 +45,36 @@ function updateHeroText() {
 }
 setInterval(updateHeroText, 3000);
 
-// 4. Scroll Reveal
+// 4. Modal (Popup) Logic အသစ်
+const modal = document.getElementById("cv-modal");
+const openModalBtn = document.getElementById("open-cv-modal");
+const navCvBtn = document.getElementById("nav-cv-btn");
+const closeBtn = document.querySelector(".close-btn");
+
+// View CV ကိုနှိပ်လျှင် Popup ပေါ်ရန်
+openModalBtn.addEventListener("click", () => {
+    modal.classList.add("show");
+});
+
+// Navbar မှ CV ကိုနှိပ်လျှင်လည်း Popup ပေါ်ရန်
+navCvBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    modal.classList.add("show");
+});
+
+// ကြက်ခြေခတ်ကိုနှိပ်လျှင် ပိတ်ရန်
+closeBtn.addEventListener("click", () => {
+    modal.classList.remove("show");
+});
+
+// အပြင်ဘက်ကိုနှိပ်လျှင် ပိတ်ရန်
+window.addEventListener("click", (e) => {
+    if (e.target === modal) {
+        modal.classList.remove("show");
+    }
+});
+
+// 5. Scroll Reveal
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -56,14 +85,26 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.fade-scroll').forEach((el) => observer.observe(el));
 
-// 5. Cursor Hover Scale
-document.querySelectorAll('a, button, .hover-target, input, textarea').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-        follower.style.transform = 'translate(-50%, -50%) scale(1.5)';
-        follower.style.background = 'rgba(255,255,255,0.1)';
+// 6. Cursor Hover Scale (Dynamic Element များအတွက် သေချာချိတ်ဆက်ပေးထားသည်)
+function attachCursorEvents() {
+    document.querySelectorAll('a, button, .hover-target, input, textarea, .close-btn').forEach(el => {
+        // Event နှစ်ခါမထပ်စေရန် အရင်ဖျက်သည်
+        el.removeEventListener('mouseenter', scaleCursorUp);
+        el.removeEventListener('mouseleave', scaleCursorDown);
+        // ပြန်ထည့်သည်
+        el.addEventListener('mouseenter', scaleCursorUp);
+        el.addEventListener('mouseleave', scaleCursorDown);
     });
-    el.addEventListener('mouseleave', () => {
-        follower.style.transform = 'translate(-50%, -50%) scale(1)';
-        follower.style.background = 'transparent';
-    });
-});
+}
+
+function scaleCursorUp() {
+    follower.style.transform = 'translate(-50%, -50%) scale(1.5)';
+    follower.style.background = 'rgba(255,255,255,0.1)';
+}
+
+function scaleCursorDown() {
+    follower.style.transform = 'translate(-50%, -50%) scale(1)';
+    follower.style.background = 'transparent';
+}
+
+attachCursorEvents();
