@@ -25,9 +25,9 @@
         <div class="logo">PORTFOLIO</div>
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
+            <li><a href="#" id="nav-cv-btn" class="hover-target">CV</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#work">Work</a></li>
-            <li><a href="#cv">CV</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
@@ -41,10 +41,22 @@
             </div>
 
             <div class="hero-btns">
-                <a href="#work" class="btn-primary hover-target">View Projects</a>
+                <button id="open-cv-modal" class="btn-primary hover-target">View CV</button>
             </div>
         </div>
     </section>
+
+    <div id="cv-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn hover-target">&times;</span>
+            <h2 class="modal-title">My Resume</h2>
+            <p class="modal-desc">Please choose an option to view or download my CV.</p>
+            <div class="modal-actions">
+                <a href="My portfolio/My cv/Naing lin htun cv" target="_blank" class="btn-primary hover-target">View CV</a>
+                <a href="My portfolio/My cv/Naing lin htun cv" download class="btn-secondary hover-target">Download CV</a>
+            </div>
+        </div>
+    </div>
 
     <div class="marquee-wrapper">
         <div class="marquee-content">
