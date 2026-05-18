@@ -45,29 +45,29 @@ function updateHeroText() {
 }
 setInterval(updateHeroText, 3000);
 
-// 4. Modal (Popup) Logic အသစ်
+// 4. Modal (CV Popup) Logic
 const modal = document.getElementById("cv-modal");
 const openModalBtn = document.getElementById("open-cv-modal");
 const navCvBtn = document.getElementById("nav-cv-btn");
 const closeBtn = document.querySelector(".close-btn");
 
-// View CV ကိုနှိပ်လျှင် Popup ပေါ်ရန်
+// View CV Button Click
 openModalBtn.addEventListener("click", () => {
     modal.classList.add("show");
 });
 
-// Navbar မှ CV ကိုနှိပ်လျှင်လည်း Popup ပေါ်ရန်
+// Navigation CV Link Click
 navCvBtn.addEventListener("click", (e) => {
     e.preventDefault();
     modal.classList.add("show");
 });
 
-// ကြက်ခြေခတ်ကိုနှိပ်လျှင် ပိတ်ရန်
+// Close Button Click
 closeBtn.addEventListener("click", () => {
     modal.classList.remove("show");
 });
 
-// အပြင်ဘက်ကိုနှိပ်လျှင် ပိတ်ရန်
+// Click Outside to Close
 window.addEventListener("click", (e) => {
     if (e.target === modal) {
         modal.classList.remove("show");
@@ -85,13 +85,11 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.fade-scroll').forEach((el) => observer.observe(el));
 
-// 6. Cursor Hover Scale (Dynamic Element များအတွက် သေချာချိတ်ဆက်ပေးထားသည်)
+// 6. Cursor Hover Scale Effect
 function attachCursorEvents() {
     document.querySelectorAll('a, button, .hover-target, input, textarea, .close-btn').forEach(el => {
-        // Event နှစ်ခါမထပ်စေရန် အရင်ဖျက်သည်
         el.removeEventListener('mouseenter', scaleCursorUp);
         el.removeEventListener('mouseleave', scaleCursorDown);
-        // ပြန်ထည့်သည်
         el.addEventListener('mouseenter', scaleCursorUp);
         el.addEventListener('mouseleave', scaleCursorDown);
     });
