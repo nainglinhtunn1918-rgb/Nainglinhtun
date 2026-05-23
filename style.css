@@ -54,10 +54,11 @@ body { background-color: #050505; color: #fff; overflow-x: hidden; cursor: none;
 .modal-desc { font-size: 0.9rem; color: #aaa; margin-bottom: 30px; line-height: 1.5; }
 .modal-actions { display: flex; flex-direction: column; gap: 15px; }
 
-/* Marquee */
+/* Marquee - Seamless Effect Fixed & Logo Resized */
 .marquee-wrapper { position: absolute; bottom: 0; left: 0; width: 100%; overflow: hidden; background: #0a0a0a; padding: 25px 0; border-top: 1px solid #1a1a1a; display: flex; }
-.marquee-content { display: flex; align-items: center; gap: 100px; width: max-content; animation: scrollLogos 25s linear infinite; }
-.marquee-content img { height: 45px; color: transparent; filter: grayscale(100%) opacity(0.4); transition: 0.4s ease; }
+.marquee-content { display: flex; align-items: center; width: max-content; animation: scrollLogos 25s linear infinite; }
+/* gap ကို ဖျက်ပြီး margin-right နဲ့ အစားထိုးလိုက်ခြင်းက seamless ဖြစ်ဖို့ သေချာစေပါတယ် */
+.marquee-content img { height: 65px; margin-right: 100px; color: transparent; filter: grayscale(100%) opacity(0.4); transition: 0.4s ease; }
 .marquee-content img:hover { filter: grayscale(0%) opacity(1); transform: scale(1.1); }
 @keyframes scrollLogos { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
