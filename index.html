@@ -3,149 +3,408 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Naing Lin Htun | Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <title>Happy Anniversary / Birthday 💜</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@400;700;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            /* Myanmar font combined with Nunito for English */
+            font-family: 'Noto Sans Myanmar', 'Nunito', sans-serif;
+            background-color: #ffffff; /* White screen as requested */
+            overflow: hidden; 
+            color: #333;
+        }
+
+        /* Generic Center Layout */
+        .screen-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+            z-index: 10;
+            transition: opacity 0.5s ease, visibility 0.5s;
+            padding: 20px;
+        }
+
+        #intro-screen {
+            z-index: 100;
+        }
+
+        .sticker-img {
+            width: 250px;
+            max-width: 80vw;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .tap-text {
+            margin-top: 20px;
+            color: #ff8fab;
+            font-weight: 700;
+            font-size: 1.3rem;
+            animation: pulse 1.5s infinite;
+            cursor: pointer;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+            100% { opacity: 0.6; transform: scale(1); }
+        }
+
+        #quiz-screen {
+            display: none;
+            opacity: 0;
+            z-index: 50;
+            text-align: center;
+        }
+
+        .quiz-box {
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Character GIF display */
+        .character-display {
+            height: 220px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .character-display img {
+            max-height: 100%;
+            border-radius: 15px;
+        }
+
+        /* Question and Options */
+        .question-text {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #4a4a4a;
+            min-height: 50px; /* Prevent jumping */
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            width: 100%;
+        }
+
+        .option-btn {
+            background-color: #fce4ec; /* Soft pink */
+            border: 2px solid #f8bbd0;
+            color: #880e4f;
+            padding: 12px 15px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-family: inherit;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .option-btn:hover {
+            background-color: #f8bbd0;
+            transform: translateY(-2px);
+        }
+
+        .option-btn:active {
+            transform: translateY(1px);
+        }
+        
+        .option-btn.correct {
+            background-color: #c8e6c9 !important; /* Green */
+            border-color: #81c784 !important;
+            color: #1b5e20 !important;
+        }
+
+        .option-btn.wrong {
+            background-color: #ffcdd2 !important; /* Red */
+            border-color: #e57373 !important;
+            color: #b71c1c !important;
+        }
+
+        /* Error Message Text */
+        .feedback-text {
+            font-family: 'Noto Sans Myanmar', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 900;
+            min-height: 55px;
+            opacity: 0;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .feedback-text.error {
+            opacity: 1;
+            transform: scale(1.05);
+            transition: all 0.2s ease;
+        }
+
+        .feedback-text.success {
+            opacity: 1;
+            animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+        }
+
+        /* စာသားအတွက် သီးသန့် Gradient Effect */
+        .text-grad-error {
+            background: linear-gradient(45deg, #ff0844 0%, #ffb199 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(2px 3px 3px rgba(255, 8, 68, 0.3));
+        }
+
+        .text-grad-success {
+            background: linear-gradient(45deg, #0ba360 0%, #3cba92 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(2px 3px 3px rgba(11, 163, 96, 0.3));
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            70% { transform: scale(1.15); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Shake Animation for Wrong Answer */
+        .shake {
+            animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+        }
+
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-2px, 0, 0); }
+            20%, 80% { transform: translate3d(4px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+            40%, 60% { transform: translate3d(6px, 0, 0); }
+        }
+
+        #main-content {
+            display: none;
+            opacity: 0;
+            background-color: #fff0f3; /* Very soft pink background for the actual website */
+            z-index: 10;
+        }
+
+        .success-box {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
-
-    <div id="preloader">
-        <div class="loader-content">
-            <h1 class="loader-logo">NAING LIN HTUN</h1>
-            <div class="loading-bar">
-                <div class="progress"></div>
-            </div>
+    <!-- Intro Screen (First White Screen) -->
+    <div id="intro-screen" class="screen-container" onclick="startQuiz()">
+        <div class="sticker-container">
+            <!-- Normal Dudu & Bubu GIF for Intro (Fixed Link) -->
+            <img src="https://media.tenor.com/qEHOXjE_30QAAAAi/bubu-dudu.gif" alt="Dudu and Bubu" class="sticker-img">
+            <p class="tap-text">Tap to enter 🌸</p>
         </div>
     </div>
 
-    <nav class="navbar">
-        <div class="logo">PORTFOLIO</div>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#" id="nav-cv-btn" class="hover-target">CV</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#work">Work</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h1 class="main-title"><span id="swap-title">Naing Lin Htun</span></h1>
+    <!-- The Gatekeeper Quiz Screen -->
+    <div id="quiz-screen" class="screen-container">
+        <div class="quiz-box" id="quiz-box">
             
-            <div class="falling-text-container">
-                <span id="falling-text">I AM A GRAPHIC DESIGNER</span>
+            <div class="feedback-text" id="feedback-text"></div>
+
+            <div class="character-display">
+                <!-- GIF will be updated by Javascript -->
+                <img id="reaction-gif" src="https://media.tenor.com/7eP2b6U1c5cAAAAi/dudu-bubu.gif" alt="Thinking">
             </div>
 
-            <div class="hero-btns">
-                <button id="open-cv-modal" class="btn-primary hover-target">VIEW CV</button>
+            <div class="question-text" id="question-text">
+                မေးခွန်း ဤနေရာတွင်ပေါ်မည်။
             </div>
-        </div>
 
-        <div class="marquee-wrapper">
-            <div class="marquee-content">
-                <img src="images/logo1.png" alt="">
-                <img src="images/logo2.png" alt="">
-                <img src="images/logo3.png" alt="">
-                <img src="images/logo4.png" alt="">
-                <img src="images/logo5.png" alt="">
-                <img src="images/logo6.png" alt="">
-                <img src="images/logo7.png" alt="">
-                
-                <img src="images/logo1.png" alt="">
-                <img src="images/logo2.png" alt="">
-                <img src="images/logo3.png" alt="">
-                <img src="images/logo4.png" alt="">
-                <img src="images/logo5.png" alt="">
-                <img src="images/logo6.png" alt="">
-                <img src="images/logo7.png" alt="">
+            <div class="options-grid" id="options-grid">
+                <!-- Buttons will be injected here -->
             </div>
-        </div>
-    </section>
 
-    <div id="cv-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn hover-target">&times;</span>
-            <h2 class="modal-title">My Resume</h2>
-            <p class="modal-desc">Please choose an option to view or download my CV.</p>
-            <div class="modal-actions">
-                <a href="docs/naing-lin-htun-cv.png" target="_blank" class="btn-primary hover-target">View CV</a>
-                <a href="docs/naing-lin-htun-cv.png" download class="btn-secondary hover-target">Download CV</a>
-            </div>
         </div>
     </div>
 
-    <section class="about section-padding" id="about">
-        <div class="container about-grid">
-            <div class="about-text fade-scroll">
-                <h2 class="section-title">Who is <span class="highlight">Symbol?</span></h2>
-                <p>I am a passionate Graphic Designer and Video Editor from Myanmar. I specialize in creating cinematic visuals, modern brand identities, and engaging video content.</p>
-                <div class="skills">
-                    <span class="skill-tag">Brand Identity</span>
-                    <span class="skill-tag">Video Editing</span>
-                    <span class="skill-tag">Motion Graphics</span>
-                    <span class="skill-tag">UI/UX</span>
-                </div>
-            </div>
-            <div class="about-image fade-scroll">
-                <div class="image-placeholder hover-target">
-                    <p>Your Profile Photo Here</p>
-                </div>
-            </div>
+    <!-- Main Website Content (Hidden initially, shown after 4 correct answers) -->
+    <div id="main-content" class="screen-container">
+        <div class="success-box">
+            <img src="https://media.tenor.com/9z4D13-j0sYAAAAi/bubu-dudu-kiss.gif" style="width: 250px; margin-bottom: 20px;">
+            <h2 style="color: #d81b60; font-family: 'Nunito', sans-serif;">Welcome to your surprise! 💜</h2>
+            <p style="margin-top: 10px; color: #666; font-size: 1.1rem;">(အစ်ကို ဒီနေရာမှာ နောက်ထပ်ထည့်ချင်တဲ့ website အပိုင်းတွေကို ဆက်ရေးပေးလို့ရပါပြီဗျာ)</p>
         </div>
-    </section>
+    </div>
 
-    <section class="work section-padding" id="work">
-        <div class="container">
-            <h2 class="section-title text-center fade-scroll">Selected <span class="highlight">Works</span></h2>
-            <div class="portfolio-grid fade-scroll">
-                <div class="portfolio-card hover-target">
-                    <img src="https://via.placeholder.com/600x400/111/555?text=Brand+Identity" alt="Work 1">
-                    <div class="card-info">
-                        <h3>Brand Identity</h3>
-                        <p>Graphic Design</p>
-                    </div>
-                </div>
-                <div class="portfolio-card hover-target">
-                    <img src="https://via.placeholder.com/600x400/1a1a2e/4a4e69?text=Video+Editing" alt="Work 2">
-                    <div class="card-info">
-                        <h3>Cinematic B-Roll</h3>
-                        <p>Video Editing</p>
-                    </div>
-                </div>
-                <div class="portfolio-card hover-target">
-                    <img src="https://via.placeholder.com/600x400/222/888?text=Marketing" alt="Work 3">
-                    <div class="card-info">
-                        <h3>Social Media Ads</h3>
-                        <p>Marketing Design</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <script>
+        // Quiz Data Structure
+        const quizData = [
+            {
+                question: "၁။ Dudu မရဲ့အသက်ကဘယ်လောက်လဲ",
+                options: ["၂၀", "၂၁", "၂၂", "၂၃"],
+                answer: "၂၂",
+                wrongMsg: "<span class='text-grad-error'>မှန်မှန်ဖြေလေ</span> 😠"
+            },
+            {
+                question: "၂။ Dudu မရဲ့အကြိုက်ဆုံးအရောင်ကဘာလဲ",
+                options: ["ပန်းရောင် (Pink)", "အပြာ (Blue)", "ခရမ်း (Purple)", "အနက် (Black)"],
+                answer: "ခရမ်း (Purple)",
+                wrongMsg: "<span class='text-grad-error'>ကိုယ့်ဟာကိုတောင်မသိဘူးလား မDudu</span> 😒"
+            },
+            {
+                question: "၃။ Dudu & Bubu ရဲ့ Anniversary Date ကဘယ်လောက်လဲ",
+                options: ["14.2.2025", "30.4.2025", "1.5.2025", "30.5.2025"],
+                answer: "30.4.2025",
+                wrongMsg: "<span class='text-grad-error'>ဒါကိုတောင်မသိဘူးပေါ့လေ</span> 😡"
+            },
+            {
+                question: "၄။ Bubu က Dudu ကိုဘယ်လောက်ထိချစ်လဲ",
+                options: ["သာမန်ပါပဲ", "နည်းနည်းလေး", "မချစ်ပါဘူး", "မိုးလောက်ကြီး"],
+                answer: "မိုးလောက်ကြီး",
+                wrongMsg: "<span class='text-grad-error'>ဒါကိုတောင်မသိဘူးပေါ့လေ တွေ့မယ်နော်</span> 🔪"
+            }
+        ];
 
-    <section class="contact section-padding" id="contact">
-        <div class="container contact-grid fade-scroll">
-            <div class="contact-info">
-                <h2 class="section-title">Let's <span class="highlight">Talk</span></h2>
-                <p>Ready to start your next project? Let's create something amazing together.</p>
-                <div class="contact-details">
-                    <p>📧 nainglinhtun@example.com</p>
-                    <p>📍 Yangon, Myanmar</p>
-                </div>
-            </div>
-            <form class="contact-form">
-                <input type="text" placeholder="Your Name" class="hover-target" required>
-                <input type="email" placeholder="Your Email" class="hover-target" required>
-                <textarea rows="5" placeholder="Your Message" class="hover-target" required></textarea>
-                <button type="submit" class="btn-primary hover-target">Send Message</button>
-            </form>
-        </div>
-    </section>
+        // URLs for GIFs based on reactions (Fixed Links)
+        const gifs = {
+            thinking: "https://media.tenor.com/7eP2b6U1c5cAAAAi/dudu-bubu.gif", // Looking cute/asking
+            kissing: "https://media.tenor.com/9z4D13-j0sYAAAAi/bubu-dudu-kiss.gif", // Correct Answer (Kissing)
+            hitting: "https://media.tenor.com/aKFaZBrZHY0AAAAi/bubu-dudu.gif" // Wrong Answer (Bubu hitting Dudu angrily)
+        };
 
-    <script src="script.js"></script>
+        let currentQuestionIndex = 0;
+        let isWaitingForNext = false; // Prevents clicking other buttons while transition happens
+
+        function startQuiz() {
+            const intro = document.getElementById('intro-screen');
+            const quiz = document.getElementById('quiz-screen');
+
+            intro.style.opacity = '0';
+            setTimeout(() => {
+                intro.style.display = 'none';
+                quiz.style.display = 'flex';
+                // Trigger fade in
+                setTimeout(() => {
+                    quiz.style.opacity = '1';
+                    loadQuestion(currentQuestionIndex);
+                }, 50);
+            }, 500);
+        }
+
+        function loadQuestion(index) {
+            isWaitingForNext = false;
+            const currentQ = quizData[index];
+            
+            // Reset UI
+            document.getElementById('reaction-gif').src = gifs.thinking;
+            document.getElementById('question-text').innerText = currentQ.question;
+            document.getElementById('feedback-text').className = 'feedback-text';
+            document.getElementById('feedback-text').innerHTML = '';
+            
+            const optionsGrid = document.getElementById('options-grid');
+            optionsGrid.innerHTML = ''; // Clear previous options
+
+            // Create buttons
+            currentQ.options.forEach(optionText => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.innerText = optionText;
+                btn.onclick = () => checkAnswer(btn, optionText, currentQ.answer, currentQ.wrongMsg);
+                optionsGrid.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(buttonEl, selectedVal, correctVal, errorMsg) {
+            if (isWaitingForNext) return; // Block multiple clicks
+            
+            const quizBox = document.getElementById('quiz-box');
+            const reactionGif = document.getElementById('reaction-gif');
+            const feedback = document.getElementById('feedback-text');
+
+            if (selectedVal === correctVal) {
+                // Correct Answer!
+                isWaitingForNext = true;
+                buttonEl.classList.add('correct');
+                reactionGif.src = gifs.kissing;
+                feedback.innerHTML = "<span class='text-grad-success'>မှန်ပါတယ် အာဘွား</span> 💋";
+                feedback.className = 'feedback-text success';
+                
+                // Disable all buttons to look clean
+                document.querySelectorAll('.option-btn').forEach(btn => btn.style.pointerEvents = 'none');
+
+                // Move to next question or success page
+                setTimeout(() => {
+                    currentQuestionIndex++;
+                    if (currentQuestionIndex < quizData.length) {
+                        loadQuestion(currentQuestionIndex);
+                    } else {
+                        showSuccessPage();
+                    }
+                }, 2000); // Wait 2 seconds for kissing animation
+
+            } else {
+                // Wrong Answer!
+                buttonEl.classList.add('wrong');
+                reactionGif.src = gifs.hitting; // Bubu hitting Dudu GIF
+                feedback.innerHTML = errorMsg;
+                feedback.className = 'feedback-text error';
+
+                // Add shake animation
+                quizBox.classList.remove('shake');
+                void quizBox.offsetWidth; // trigger reflow
+                quizBox.classList.add('shake');
+
+                // Reset back to thinking state after a few seconds so user can try again
+                setTimeout(() => {
+                    if (!isWaitingForNext) {
+                        buttonEl.classList.remove('wrong');
+                        reactionGif.src = gifs.thinking;
+                        feedback.className = 'feedback-text';
+                        feedback.innerHTML = '';
+                    }
+                }, 2500); // Show hit animation for 2.5s
+            }
+        }
+
+        function showSuccessPage() {
+            const quiz = document.getElementById('quiz-screen');
+            const mainContent = document.getElementById('main-content');
+
+            quiz.style.opacity = '0';
+            setTimeout(() => {
+                quiz.style.display = 'none';
+                mainContent.style.display = 'flex';
+                
+                setTimeout(() => {
+                    mainContent.style.opacity = '1';
+                }, 50);
+            }, 500);
+        }
+
+    </script>
 </body>
 </html>
