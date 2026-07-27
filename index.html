@@ -5,406 +5,538 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Anniversary / Birthday 💜</title>
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@400;700;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- အထူဆုံးနဲ့ အလှဆုံး Noto Sans Myanmar Black ကို သုံးထားပါတယ် -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@900&family=Great+Vibes&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     
     <style>
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
+            font-family: 'Noto Sans Myanmar', sans-serif;
         }
 
         body {
-            /* Myanmar font combined with Nunito for English */
-            font-family: 'Noto Sans Myanmar', 'Nunito', sans-serif;
-            background-color: #ffffff; /* White screen as requested */
-            overflow: hidden; 
+            background-color: #ffffff; /* ပထမဆုံး White Screen */
             color: #333;
-        }
-
-        /* Generic Center Layout */
-        .screen-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background-color: #ffffff;
-            z-index: 10;
-            transition: opacity 0.5s ease, visibility 0.5s;
-            padding: 20px;
+            overflow: hidden;
         }
 
+        /* Intro Screen */
         #intro-screen {
-            z-index: 100;
-        }
-
-        .sticker-img {
-            width: 250px;
-            max-width: 80vw;
-            transition: transform 0.3s ease;
-            cursor: pointer;
-        }
-
-        .tap-text {
-            margin-top: 20px;
-            color: #ff8fab;
-            font-weight: 700;
-            font-size: 1.3rem;
-            animation: pulse 1.5s infinite;
-            cursor: pointer;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 0.6; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.05); }
-            100% { opacity: 0.6; transform: scale(1); }
-        }
-
-        #quiz-screen {
-            display: none;
-            opacity: 0;
-            z-index: 50;
-            text-align: center;
-        }
-
-        .quiz-box {
-            width: 100%;
-            max-width: 400px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100vh;
+            transition: opacity 0.5s;
         }
 
-        /* Character GIF display */
-        .character-display {
-            height: 220px;
+        .sticker-container {
+            width: 250px;
+            margin-bottom: 30px;
+            /* Tenor embed container ကို fix လုပ်ရန် */
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .character-display img {
-            max-height: 100%;
-            border-radius: 15px;
-        }
-
-        /* Question and Options */
-        .question-text {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: #4a4a4a;
-            min-height: 50px; /* Prevent jumping */
-        }
-
-        .options-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            width: 100%;
-        }
-
-        .option-btn {
-            background-color: #fce4ec; /* Soft pink */
-            border: 2px solid #f8bbd0;
-            color: #880e4f;
-            padding: 12px 15px;
-            border-radius: 30px;
-            font-size: 1rem;
-            font-family: inherit;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-
-        .option-btn:hover {
-            background-color: #f8bbd0;
-            transform: translateY(-2px);
-        }
-
-        .option-btn:active {
-            transform: translateY(1px);
         }
         
-        .option-btn.correct {
-            background-color: #c8e6c9 !important; /* Green */
-            border-color: #81c784 !important;
-            color: #1b5e20 !important;
+        .sticker-container .tenor-gif-embed {
+            pointer-events: none; /* Embed ပေါ်က link တွေကို မနှိပ်မိအောင် တားထားပါသည် */
         }
 
-        .option-btn.wrong {
-            background-color: #ffcdd2 !important; /* Red */
-            border-color: #e57373 !important;
-            color: #b71c1c !important;
+        .enter-btn {
+            background: linear-gradient(45deg, #a18cd1 0%, #fbc2eb 100%);
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+            z-index: 10;
         }
 
-        /* Error Message Text */
-        .feedback-text {
-            font-family: 'Noto Sans Myanmar', sans-serif;
-            font-size: 1.6rem;
-            font-weight: 900;
-            min-height: 55px;
-            opacity: 0;
-            margin-bottom: 15px;
-            display: flex;
+        .enter-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Quiz Screen */
+        #quiz-screen {
+            display: none;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 500px;
+            height: 100vh;
+            padding: 30px 20px;
             text-align: center;
         }
 
-        .feedback-text.error {
-            opacity: 1;
-            transform: scale(1.05);
-            transition: all 0.2s ease;
+        /* ထိပ်ဆုံးက အမှား/အမှန် Feedback စာသား (Text Effect နဲ့) */
+        #feedback-container {
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
-        .feedback-text.success {
-            opacity: 1;
-            animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+        .feedback-text {
+            font-size: 1.8rem;
+            font-weight: 900; /* အထူဆုံး */
+            opacity: 0;
         }
 
-        /* စာသားအတွက် သီးသန့် Gradient Effect */
-        .text-grad-error {
-            background: linear-gradient(45deg, #ff0844 0%, #ffb199 100%);
+        .feedback-emoji {
+            font-size: 1.8rem;
+            opacity: 0;
+        }
+
+        /* အမှား/အမှန် Gradient အရောင်များ */
+        .text-error {
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(2px 3px 3px rgba(255, 8, 68, 0.3));
+            filter: drop-shadow(2px 2px 2px rgba(255, 75, 43, 0.3));
         }
 
-        .text-grad-success {
-            background: linear-gradient(45deg, #0ba360 0%, #3cba92 100%);
+        .text-success {
+            background: linear-gradient(45deg, #11998e, #38ef7d);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(2px 3px 3px rgba(11, 163, 96, 0.3));
+            filter: drop-shadow(2px 2px 2px rgba(56, 239, 125, 0.3));
         }
 
-        @keyframes bounceIn {
+        .show-feedback {
+            animation: popBounce 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        /* မေးခွန်းစာသား */
+        .question-text {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin: 20px 0;
+            color: #4C1D95;
+            min-height: 40px; /* စာကြောင်းအရှည်အပုကြောင့် ခုန်မနေအောင် */
+        }
+
+        /* အဖြေများကို ၂ ခုစီ ရေပြင်ညီတန်းရန် 2x2 Grid */
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .option-btn {
+        background: #f8f9fa;
+        border: 2px solid #e9ecef;
+        padding: 15px 10px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: #333;
+        border-radius: 15px;
+        cursor: pointer;
+        transition: all 0.2s;
+        word-break: break-word; /* စာရှည်လျှင် အောက်တစ်ကြောင်းဆင်းရန် (စာမပျက်စေရန်) */
+        line-height: 1.4;
+    }
+
+    .option-btn:active {
+            background: #e9ecef;
+            transform: scale(0.95);
+        }
+
+        /* Animations */
+        @keyframes popBounce {
             0% { transform: scale(0.5); opacity: 0; }
-            70% { transform: scale(1.15); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 1; }
             100% { transform: scale(1); opacity: 1; }
         }
 
-        /* Shake Animation for Wrong Answer */
         .shake {
-            animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+            animation: shake 0.5s;
         }
 
         @keyframes shake {
-            10%, 90% { transform: translate3d(-2px, 0, 0); }
-            20%, 80% { transform: translate3d(4px, 0, 0); }
-            30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
-            40%, 60% { transform: translate3d(6px, 0, 0); }
-        }
+            0%, 100% { transform: translateX(0); }
+        20%, 60% { transform: translateX(-10px); }
+        40%, 80% { transform: translateX(10px); }
+    }
+    
+    /* Main Website Content (Birthday Theme) */
+    #main-content {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100vh;
+        text-align: center;
+        background: radial-gradient(circle at center, #f3e8ff 0%, #d8b4e2 100%);
+        overflow: hidden;
+        position: relative;
+    }
 
+    .birthday-text {
+        font-family: 'Great Vibes', cursive;
+        font-size: 4.5rem;
+        color: #6B21A8;
+        text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 2px 2px 4px rgba(0,0,0,0.2);
+        animation: floatAndGlow 3s ease-in-out infinite;
+        z-index: 10;
+        padding: 0 20px;
+        line-height: 1.2;
+    }
+
+    @keyframes floatAndGlow {
+        0%, 100% { transform: translateY(0); text-shadow: 0 0 15px rgba(255,255,255,0.8); }
+        50% { transform: translateY(-15px); text-shadow: 0 0 25px rgba(107, 33, 168, 0.6); }
+    }
+
+    /* Heart Transition Overlay */
+    #heart-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        background-color: transparent;
+        pointer-events: none;
+    }
+    
+    .big-heart {
+        color: #9c27b0; /* ခရမ်းရောင် အသည်း */
+        font-size: 20px;
+        transform: scale(0);
+        transition: transform 2.5s cubic-bezier(0.64, 0.04, 0.35, 1);
+    }
+
+    @keyframes fall {
+        to { transform: translateY(110vh) rotate(360deg); }
+    }
+
+    @media (max-width: 600px) {
+        .birthday-text { font-size: 3.5rem; }
+    }
+    
+    /* Tenor script အလုပ်လုပ်ချိန်တွင် ပုံများ ထပ်မနေစေရန် */
+    .quiz-sticker-wrapper {
+            display: none;
+            width: 250px;
+        }
+        
+        .quiz-sticker-wrapper.active {
+            display: block;
+        }
+        
+        /* Main Website Content ပုံစံကြမ်း (နောက်ဆုံး မှန်သွားလျှင် ပြရန်) */
         #main-content {
             display: none;
-            opacity: 0;
-            background-color: #fff0f3; /* Very soft pink background for the actual website */
-            z-index: 10;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100vh;
+            text-align: center;
+            background-color: #fce4ec;
         }
 
-        .success-box {
-            text-align: center;
-        }
     </style>
 </head>
 <body>
 
-    <!-- Intro Screen (First White Screen) -->
-    <div id="intro-screen" class="screen-container" onclick="startQuiz()">
+    <!-- Intro Screen -->
+    <div id="intro-screen">
         <div class="sticker-container">
-            <!-- Normal Dudu & Bubu GIF for Intro (Fixed Link) -->
-            <img src="https://media.tenor.com/qEHOXjE_30QAAAAi/bubu-dudu.gif" alt="Dudu and Bubu" class="sticker-img">
-            <p class="tap-text">Tap to enter 🌸</p>
+            <!-- Intro Sticker Embed -->
+            <div class="tenor-gif-embed" data-postid="12746691280645153574" data-share-method="host" data-aspect-ratio="1" data-width="100%"><a href="https://tenor.com/view/munch-face-gif-12746691280645153574">Munch Face Sticker</a>from <a href="https://tenor.com/search/munch+face-stickers">Munch Face Stickers</a></div>
         </div>
+        <button class="enter-btn" onclick="startQuiz()">Tap to here</button>
     </div>
 
-    <!-- The Gatekeeper Quiz Screen -->
-    <div id="quiz-screen" class="screen-container">
-        <div class="quiz-box" id="quiz-box">
+    <!-- Quiz Screen -->
+    <div id="quiz-screen">
+        <!-- အမှား/အမှန် စာသားပြမည့် နေရာ -->
+        <div id="feedback-container">
+            <span id="feedback-text" class="feedback-text"></span>
+            <span id="feedback-emoji" class="feedback-emoji"></span>
+        </div>
+
+        <!-- အလယ်မှာ Stickers များ (Embeds များကို သီးသန့်ခွဲထားပြီး လိုအပ်မှ ပြပါမည်) -->
+        <div class="sticker-container">
+            <!-- 1. Thinking Sticker -->
+            <div id="sticker-thinking" class="quiz-sticker-wrapper active">
+                <div class="tenor-gif-embed" data-postid="20044188" data-share-method="host" data-aspect-ratio="1" data-width="100%"><a href="https://tenor.com/view/am-happy-gif-20044188">Am Happy Sticker</a>from <a href="https://tenor.com/search/am-stickers">Am Stickers</a></div>
+            </div>
             
-            <div class="feedback-text" id="feedback-text"></div>
-
-            <div class="character-display">
-                <!-- GIF will be updated by Javascript -->
-                <img id="reaction-gif" src="https://media.tenor.com/7eP2b6U1c5cAAAAi/dudu-bubu.gif" alt="Thinking">
+            <!-- 2. Angry/Hitting Sticker -->
+            <div id="sticker-angry" class="quiz-sticker-wrapper">
+                <div class="tenor-gif-embed" data-postid="1128914395439640917" data-share-method="host" data-aspect-ratio="0.952381" data-width="100%"><a href="https://tenor.com/view/dudu-heating-bubu-angry-dudu-dudu-bubu-new-dudu-couple-fighting-gif-1128914395439640917">Dudu Heating Bubu Angry Dudu Sticker</a>from <a href="https://tenor.com/search/dudu+heating+bubu-stickers">Dudu Heating Bubu Stickers</a></div>
             </div>
-
-            <div class="question-text" id="question-text">
-                မေးခွန်း ဤနေရာတွင်ပေါ်မည်။
+            
+            <!-- 3. Kissing Sticker -->
+            <div id="sticker-kissing" class="quiz-sticker-wrapper">
+                <div class="tenor-gif-embed" data-postid="22536058" data-share-method="host" data-aspect-ratio="1" data-width="100%"><a href="https://tenor.com/view/bear-kiss-bear-kisses-kiss-kisses-love-gif-22536058">Bear Kiss Bear Kisses Sticker</a>from <a href="https://tenor.com/search/bear+kiss-stickers">Bear Kiss Stickers</a></div>
             </div>
+        </div>
 
-            <div class="options-grid" id="options-grid">
-                <!-- Buttons will be injected here -->
-            </div>
+        <!-- အောက်နားလေးမှာ မေးခွန်း -->
+        <div id="question-text" class="question-text">မေးခွန်း...</div>
 
+        <!-- ၂ ခုစီ ရေပြင်ညီတန်းမည့် Grid -->
+        <div class="options-grid" id="options-grid">
+            <!-- ခလုတ်များကို JS မှ ထည့်ပေးမည် -->
         </div>
     </div>
-
-    <!-- Main Website Content (Hidden initially, shown after 4 correct answers) -->
-    <div id="main-content" class="screen-container">
-        <div class="success-box">
-            <img src="https://media.tenor.com/9z4D13-j0sYAAAAi/bubu-dudu-kiss.gif" style="width: 250px; margin-bottom: 20px;">
-            <h2 style="color: #d81b60; font-family: 'Nunito', sans-serif;">Welcome to your surprise! 💜</h2>
-            <p style="margin-top: 10px; color: #666; font-size: 1.1rem;">(အစ်ကို ဒီနေရာမှာ နောက်ထပ်ထည့်ချင်တဲ့ website အပိုင်းတွေကို ဆက်ရေးပေးလို့ရပါပြီဗျာ)</p>
-        </div>
+    
+    <!-- Main Website Content (Birthday Theme) -->
+    <div id="main-content">
+        <h1 class="birthday-text">Happy Birthday<br>Linmm 💜</h1>
     </div>
+
+    <!-- Background Music (Ed Sheeran - Perfect) -->
+    <!-- မိမိစက်ထဲတွင် perfect.mp3 ဖိုင် ရှိရပါမည် -->
+    <audio id="bg-music" loop>
+        <source src="perfect.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Heart Transition Overlay -->
+    <div id="heart-overlay">
+        <div class="big-heart">💜</div>
+    </div>
+
+    <!-- Tenor Embed Script (တစ်ခါတည်း ထည့်ထားရန်) -->
+    <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
 
     <script>
-        // Quiz Data Structure
-        const quizData = [
+        const questions = [
             {
-                question: "၁။ Dudu မရဲ့အသက်ကဘယ်လောက်လဲ",
-                options: ["၂၀", "၂၁", "၂၂", "၂၃"],
+                q: "၁။ Dudu မရဲ့အသက်ကဘယ်လောက်လဲ",
+                options: ["၂၁", "၂၂", "၂၃", "၂၄"],
                 answer: "၂၂",
-                wrongMsg: "<span class='text-grad-error'>မှန်မှန်ဖြေလေ</span> 😠"
+                wrongMsg: "မှန်မှန်ဖြေလေ",
+                wrongEmoji: "😠",
+                rightEmoji: "😘"
             },
             {
-                question: "၂။ Dudu မရဲ့အကြိုက်ဆုံးအရောင်ကဘာလဲ",
-                options: ["ပန်းရောင် (Pink)", "အပြာ (Blue)", "ခရမ်း (Purple)", "အနက် (Black)"],
-                answer: "ခရမ်း (Purple)",
-                wrongMsg: "<span class='text-grad-error'>ကိုယ့်ဟာကိုတောင်မသိဘူးလား မDudu</span> 😒"
+                q: "၂။ Dudu မရဲ့အကြိုက်ဆုံးအရောင်ကဘာလဲ",
+                options: ["ပန်းရောင်", "အပြာရောင်", "ခရမ်းရောင်", "အနက်ရောင်"],
+                answer: "ခရမ်းရောင်",
+                wrongMsg: "ကိုယ့်ဟာကိုတောင်မသိဘူးလား မDudu",
+                wrongEmoji: "😒",
+                rightEmoji: "🥰"
             },
             {
-                question: "၃။ Dudu & Bubu ရဲ့ Anniversary Date ကဘယ်လောက်လဲ",
-                options: ["14.2.2025", "30.4.2025", "1.5.2025", "30.5.2025"],
-                answer: "30.4.2025",
-                wrongMsg: "<span class='text-grad-error'>ဒါကိုတောင်မသိဘူးပေါ့လေ</span> 😡"
+                q: "၃။ Dudu & Bubu ရဲ့ Anniversary Date ကဘယ်လောက်လဲ",
+                options: ["၁.၅.၂၀၂၅", "၃၀.၄.၂၀၂၅", "၃၁.၅.၂၀၂၅", "၃၀.၅.၂၀၂၅"],
+                answer: "၃၀.၄.၂၀၂၅",
+                wrongMsg: "ဒါကိုတောင်မသိဘူးပေါ့လေ",
+                wrongEmoji: "😤",
+                rightEmoji: "💖"
             },
             {
-                question: "၄။ Bubu က Dudu ကိုဘယ်လောက်ထိချစ်လဲ",
-                options: ["သာမန်ပါပဲ", "နည်းနည်းလေး", "မချစ်ပါဘူး", "မိုးလောက်ကြီး"],
+                q: "၄။ Bubu က Dudu ကိုဘယ်လောက်ထိချစ်လဲ",
+                options: ["နည်းနည်းလေး", "သာမန်ပဲ", "မိုးလောက်ကြီး", "မချစ်ဘူး"],
                 answer: "မိုးလောက်ကြီး",
-                wrongMsg: "<span class='text-grad-error'>ဒါကိုတောင်မသိဘူးပေါ့လေ တွေ့မယ်နော်</span> 🔪"
+                wrongMsg: "ဒါကိုတောင်မသိဘူးပေါ့လေ တွေ့မယ်နော်",
+                wrongEmoji: "🔪",
+                rightEmoji: "👩‍❤️‍💋‍👨"
             }
         ];
 
-        // URLs for GIFs based on reactions (Fixed Links)
-        const gifs = {
-            thinking: "https://media.tenor.com/7eP2b6U1c5cAAAAi/dudu-bubu.gif", // Looking cute/asking
-            kissing: "https://media.tenor.com/9z4D13-j0sYAAAAi/bubu-dudu-kiss.gif", // Correct Answer (Kissing)
-            hitting: "https://media.tenor.com/aKFaZBrZHY0AAAAi/bubu-dudu.gif" // Wrong Answer (Bubu hitting Dudu angrily)
-        };
-
         let currentQuestionIndex = 0;
-        let isWaitingForNext = false; // Prevents clicking other buttons while transition happens
+        let isWaitingForNext = false; // ခလုတ်တွေ အထပ်ထပ် မနှိပ်မိစေရန်
 
         function startQuiz() {
-            const intro = document.getElementById('intro-screen');
-            const quiz = document.getElementById('quiz-screen');
-
-            intro.style.opacity = '0';
-            setTimeout(() => {
-                intro.style.display = 'none';
-                quiz.style.display = 'flex';
-                // Trigger fade in
-                setTimeout(() => {
-                    quiz.style.opacity = '1';
-                    loadQuestion(currentQuestionIndex);
-                }, 50);
-            }, 500);
+            document.getElementById('intro-screen').style.display = 'none';
+            document.getElementById('quiz-screen').style.display = 'flex';
+            loadQuestion();
         }
 
-        function loadQuestion(index) {
-            isWaitingForNext = false;
-            const currentQ = quizData[index];
+        function showSticker(stickerType) {
+            // Sticker ၃ ခုလုံးကို အရင်ဖျောက်ပါ
+            document.getElementById('sticker-thinking').classList.remove('active');
+            document.getElementById('sticker-angry').classList.remove('active');
+            document.getElementById('sticker-kissing').classList.remove('active');
             
-            // Reset UI
-            document.getElementById('reaction-gif').src = gifs.thinking;
-            document.getElementById('question-text').innerText = currentQ.question;
-            document.getElementById('feedback-text').className = 'feedback-text';
-            document.getElementById('feedback-text').innerHTML = '';
-            
-            const optionsGrid = document.getElementById('options-grid');
-            optionsGrid.innerHTML = ''; // Clear previous options
+            // လိုချင်တဲ့ Sticker ကို ပြပါ
+            document.getElementById('sticker-' + stickerType).classList.add('active');
+        }
 
-            // Create buttons
-            currentQ.options.forEach(optionText => {
+        function loadQuestion() {
+            isWaitingForNext = false;
+            const qData = questions[currentQuestionIndex];
+            
+            // စဥ်းစားနေတဲ့ Sticker ပြန်ထားရန်
+            showSticker('thinking');
+            
+            // မေးခွန်းစာသား
+            document.getElementById('question-text').innerText = qData.q;
+            
+            // Feedback စာသား ရှင်းထုတ်ရန်
+            resetFeedback();
+
+            // Options ခလုတ်များ ထုတ်ရန်
+            const optionsGrid = document.getElementById('options-grid');
+            optionsGrid.innerHTML = '';
+            
+            qData.options.forEach(opt => {
                 const btn = document.createElement('button');
                 btn.className = 'option-btn';
-                btn.innerText = optionText;
-                btn.onclick = () => checkAnswer(btn, optionText, currentQ.answer, currentQ.wrongMsg);
+                btn.innerText = opt;
+                btn.onclick = () => checkAnswer(opt, qData.answer);
                 optionsGrid.appendChild(btn);
             });
         }
 
-        function checkAnswer(buttonEl, selectedVal, correctVal, errorMsg) {
-            if (isWaitingForNext) return; // Block multiple clicks
+        function checkAnswer(selected, correct) {
+            if (isWaitingForNext) return; // စောင့်နေချိန်တွင် ထပ်နှိပ်၍မရပါ
             
-            const quizBox = document.getElementById('quiz-box');
-            const reactionGif = document.getElementById('reaction-gif');
-            const feedback = document.getElementById('feedback-text');
+            const qData = questions[currentQuestionIndex];
+            const feedbackText = document.getElementById('feedback-text');
+            const feedbackEmoji = document.getElementById('feedback-emoji');
+            
+            resetFeedback(); 
 
-            if (selectedVal === correctVal) {
-                // Correct Answer!
-                isWaitingForNext = true;
-                buttonEl.classList.add('correct');
-                reactionGif.src = gifs.kissing;
-                feedback.innerHTML = "<span class='text-grad-success'>မှန်ပါတယ် အာဘွား</span> 💋";
-                feedback.className = 'feedback-text success';
-                
-                // Disable all buttons to look clean
-                document.querySelectorAll('.option-btn').forEach(btn => btn.style.pointerEvents = 'none');
-
-                // Move to next question or success page
-                setTimeout(() => {
-                    currentQuestionIndex++;
-                    if (currentQuestionIndex < quizData.length) {
-                        loadQuestion(currentQuestionIndex);
-                    } else {
-                        showSuccessPage();
-                    }
-                }, 2000); // Wait 2 seconds for kissing animation
-
-            } else {
-                // Wrong Answer!
-                buttonEl.classList.add('wrong');
-                reactionGif.src = gifs.hitting; // Bubu hitting Dudu GIF
-                feedback.innerHTML = errorMsg;
-                feedback.className = 'feedback-text error';
-
-                // Add shake animation
-                quizBox.classList.remove('shake');
-                void quizBox.offsetWidth; // trigger reflow
-                quizBox.classList.add('shake');
-
-                // Reset back to thinking state after a few seconds so user can try again
-                setTimeout(() => {
-                    if (!isWaitingForNext) {
-                        buttonEl.classList.remove('wrong');
-                        reactionGif.src = gifs.thinking;
-                        feedback.className = 'feedback-text';
-                        feedback.innerHTML = '';
-                    }
-                }, 2500); // Show hit animation for 2.5s
-            }
-        }
-
-        function showSuccessPage() {
-            const quiz = document.getElementById('quiz-screen');
-            const mainContent = document.getElementById('main-content');
-
-            quiz.style.opacity = '0';
             setTimeout(() => {
-                quiz.style.display = 'none';
-                mainContent.style.display = 'flex';
-                
-                setTimeout(() => {
-                    mainContent.style.opacity = '1';
-                }, 50);
-            }, 500);
+                // အဖြေတိုက်စစ်ခြင်း
+                if (selected === correct) {
+                    
+                    // --- အဖြေမှန်လျှင် ---
+                    isWaitingForNext = true;
+                    showSticker('kissing'); // Kissing sticker ပြမည်
+                    
+                    // ၄ ခုမြောက် (နောက်ဆုံး) မေးခွန်းဆိုလျှင် စာသားခွဲပြမည်
+                    if (currentQuestionIndex === 3) {
+                        feedbackText.innerText = "အဲ့ထက်တောင်ပိုသေးတယ်နော်";
+                    } else {
+                        feedbackText.innerText = "မှန်တာပေါ့ အာဘွား";
+                    }
+                    
+                    feedbackText.className = 'feedback-text text-success show-feedback';
+                    feedbackEmoji.innerText = qData.rightEmoji;
+                    feedbackEmoji.className = 'feedback-emoji show-feedback';
+                    
+                    // ၂.၅ စက္ကန့်နေလျှင် နောက်မေးခွန်းသို့ ကူးရန်
+                    setTimeout(() => {
+                        currentQuestionIndex++;
+                        if (currentQuestionIndex < questions.length) {
+                            loadQuestion();
+                        } else {
+                            // ၄ ခုလုံးမှန်သွားလျှင် Transition ဖြင့် Main Page သို့ သွားရန်
+                            startTransition();
+                        }
+                    }, 2500);
+
+                } else {
+                    
+                    // --- အဖြေမှားလျှင် ---
+                    isWaitingForNext = true;
+                    showSticker('angry'); // Angry sticker ပြမည်
+                    
+                    feedbackText.innerText = qData.wrongMsg;
+                    feedbackText.className = 'feedback-text text-error show-feedback';
+                    
+                    feedbackEmoji.innerText = qData.wrongEmoji;
+                    feedbackEmoji.className = 'feedback-emoji show-feedback';
+                    
+                    // Screen တုန်ခါရန်
+                    document.body.classList.add('shake');
+                    setTimeout(() => {
+                        document.body.classList.remove('shake');
+                    }, 500);
+                    
+                    // ခဏနေလျှင် ပြန်စဥ်းစားသော ပုံစံသို့ ပြန်ပြောင်းပြီး ထပ်ဖြေခွင့်ပေးရန်
+                    setTimeout(() => {
+                        if(currentQuestionIndex < questions.length) {
+                             showSticker('thinking');
+                             resetFeedback();
+                             isWaitingForNext = false;
+                        }
+                    }, 2500);
+                }
+            }, 50);
         }
 
-    </script>
+        function resetFeedback() {
+        const textEl = document.getElementById('feedback-text');
+        const emojiEl = document.getElementById('feedback-emoji');
+        textEl.innerText = '';
+        textEl.className = 'feedback-text';
+        emojiEl.innerText = '';
+        emojiEl.className = 'feedback-emoji';
+    }
+
+    function startTransition() {
+        const overlay = document.getElementById('heart-overlay');
+        const heart = overlay.querySelector('.big-heart');
+        const bgMusic = document.getElementById('bg-music');
+        
+        overlay.style.display = 'flex';
+        
+        // Ed Sheeran - Perfect သီချင်းစဖွင့်ရန် (perfect.mp3 ကို ဖိုဒါထဲ ထည့်ထားရန်)
+        bgMusic.play().catch(e => console.log("Audio play prevented:", e));
+        
+        // ခရမ်းရောင် အသည်းပုံလေး ကြီးလာမည့် Animation စရန်
+        setTimeout(() => {
+            heart.style.transform = 'scale(200)'; // မျက်နှာပြင်အပြည့် ဖုံးသွားရန်
+        }, 50);
+        
+        // မျက်နှာပြင်အပြည့် ဖုံးသွားချိန်တွင်
+        setTimeout(() => {
+            document.getElementById('quiz-screen').style.display = 'none';
+            document.getElementById('main-content').style.display = 'flex';
+            
+            // Overlay ကို နောက်ခံ ခရမ်းရောင်ပြောင်းပြီး အသည်းပုံ (text) ကို ဖျောက်မည်
+            overlay.style.backgroundColor = '#9c27b0';
+            heart.style.display = 'none';
+            
+            // နှလုံးသားလေးတွေ ကြွေကျလာစေမည်
+            createFloatingHearts();
+            
+            // မျက်နှာပြင်သစ် ပေါ်လာစေရန် Overlay ကို ဖြည်းဖြည်းချင်း ဖျောက်မည်
+            setTimeout(() => {
+                overlay.style.transition = 'opacity 1.5s ease';
+                overlay.style.opacity = '0';
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                }, 1500);
+            }, 500);
+            
+        }, 2500); // Heart ကြီးလာမည့် ကြာချိန်စောင့်ရန်
+    }
+
+    function createFloatingHearts() {
+        const bg = document.getElementById('main-content');
+        setInterval(() => {
+            const heart = document.createElement("div");
+            heart.innerHTML = ["💜", "✨", "🌸", "💖"][Math.floor(Math.random()*4)];
+            heart.style.position = 'absolute';
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.top = "-10vh";
+            heart.style.animation = `fall ${Math.random() * 3 + 3}s linear forwards`;
+            heart.style.fontSize = (Math.random() * 1.5 + 0.5) + "rem";
+            heart.style.zIndex = "1";
+            bg.appendChild(heart);
+            setTimeout(() => heart.remove(), 6000);
+        }, 300);
+    }
+</script>
 </body>
 </html>
