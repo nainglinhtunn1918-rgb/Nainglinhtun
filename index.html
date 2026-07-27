@@ -446,6 +446,165 @@
             100% { opacity: 0; transform: translate(-50%, -180%) scale(0.8); }
         }
 
+        /* --- Final Screens Styles (စာအိတ်နှင့် Transition အတွက်) --- */
+        #final-transition-screen {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: #ffffff;
+            z-index: 100;
+        }
+
+        #envelope-screen {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: linear-gradient(135deg, #4c1d95, #6b21a8);
+            z-index: 110;
+            transition: opacity 1s ease;
+        }
+
+        .envelope-btn {
+            font-size: 100px;
+            cursor: pointer;
+            animation: floatAndGlow 3s ease-in-out infinite;
+            transition: transform 0.3s;
+        }
+
+        .envelope-btn:active {
+            transform: scale(0.9);
+        }
+
+        .envelope-text {
+            color: #f3e8ff;
+            font-size: 1.5rem;
+            margin-top: 20px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            letter-spacing: 2px;
+            animation: pulseText 2s infinite;
+        }
+        
+        @keyframes pulseText {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        #letter-screen {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: linear-gradient(135deg, #4c1d95, #6b21a8);
+            z-index: 120;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+            padding: 50px 20px; /* Scroll ဆွဲလို့ရအောင် Padding ပေးထားသည် */
+            overflow-y: auto; /* အောက်သို့ ဆွဲကြည့်နိုင်ရန် (Scroll) */
+        }
+
+        .letter-paper {
+            background: #fffdf8;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            transform: translateY(50px);
+            transition: transform 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            color: #4c1d95;
+            line-height: 1.8;
+            font-family: 'Noto Sans Myanmar', sans-serif;
+            margin-bottom: 60px; /* အောက်က Our Journey အပိုင်းနဲ့ ခွာထားရန် */
+            flex-shrink: 0;
+        }
+
+        .letter-paper.open {
+            transform: translateY(0);
+        }
+
+        /* --- Our Journey Section Styles --- */
+        .journey-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 600px;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1.5s ease;
+            padding-bottom: 50px;
+        }
+
+        .journey-section.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .journey-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.5rem;
+            color: #f3e8ff;
+            margin-bottom: 40px;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+
+        .floating-photos {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            width: 100%;
+            margin-bottom: 40px;
+            flex-wrap: wrap; /* ဖုန်းဖြင့်ကြည့်လျှင် ပုံတွေ အောက်တစ်ဆင့်ဆင်းရန် */
+        }
+
+        .float-img {
+            width: 160px;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 6px solid #fff;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+        }
+
+        /* ပုံနှစ်ပုံကို ရှေ့နောက် မတူဘဲ လွင့်မျောနေစေရန် */
+        .float-img:nth-child(1) {
+            animation: floatLeft 4s ease-in-out infinite;
+        }
+
+        .float-img:nth-child(2) {
+            animation: floatRight 4s ease-in-out infinite;
+            animation-delay: -2s; /* ဒုတိယပုံကို အချိန်နောက်ကျပြီးမှ စရန် */
+        }
+
+        @keyframes floatLeft {
+            0%, 100% { transform: translateY(0) rotate(-6deg); }
+            50% { transform: translateY(-15px) rotate(-2deg); }
+        }
+
+        @keyframes floatRight {
+            0%, 100% { transform: translateY(0) rotate(6deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+        }
+
+        .journey-text {
+            color: #f3e8ff;
+            font-size: 1.2rem;
+            text-align: center;
+            line-height: 1.8;
+            font-weight: bold;
+            padding: 0 15px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
         /* Heart Transition Overlay */
         #heart-overlay {
             position: fixed;
@@ -565,6 +724,40 @@
                     <span class="burst-text">အာဘွား</span>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Final Transition Screen (Dudu Bubu ပြေးရိုက်သည့် GIF) -->
+    <div id="final-transition-screen">
+        <div class="sticker-container" style="width: 300px;">
+            <div class="tenor-gif-embed" data-postid="8423131164250366515" data-share-method="host" data-aspect-ratio="1" data-width="100%"><a href="https://tenor.com/view/dudu-bubu-bubu-dudu-dudu-run-dudu-running-bubu-attack-gif-8423131164250366515">Dudu Bubu Bubu Dudu GIF</a>from <a href="https://tenor.com/search/dudu+bubu-gifs">Dudu Bubu GIFs</a></div>
+        </div>
+    </div>
+
+    <!-- Envelope Screen (စာအိတ်) -->
+    <div id="envelope-screen">
+        <div class="envelope-btn" onclick="openEnvelope()">💌</div>
+        <div class="envelope-text">Tap to open</div>
+    </div>
+
+    <!-- Letter Screen (စာလွှာ) -->
+    <div id="letter-screen">
+        <div class="letter-paper" id="letter-paper">
+            <h2 style="font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: #9c27b0; margin-bottom: 20px;">My Love 💜</h2>
+            <p style="font-size: 1.1rem; font-weight: bold; margin-bottom: 15px;">မွေးနေ့ကစပြီး အမြဲတမ်း ပျော်ရွှင်ပါစေ။</p>
+            <p>ဘယ်လောက်ပဲ အချိန်တွေကြာသွားပါစေ၊ ကိုယ့်ရဲ့ အချစ်တွေကတော့ မင်းအတွက် အမြဲတမ်း ရှင်သန်နေမှာပါ။</p>
+            <p style="margin-top: 20px; font-weight: bold; color: #ff416c;">အရမ်းချစ်တယ်နော် အာဘွား 😘</p>
+        </div>
+
+        <!-- အသစ်ထပ်တိုးထားသော Our Journey အပိုင်း -->
+        <div class="journey-section" id="journey-section">
+            <h2 class="journey-title">Our Journey</h2>
+            <div class="floating-photos">
+                <!-- မိမိထည့်လိုသော ပုံ ၂ ပုံ၏ Link သို့မဟုတ် File နာမည်ကို ဤနေရာတွင် ပြင်ပါ -->
+                <img src="https://placehold.co/400x500/fbc2eb/a18cd1?text=Photo+1" class="float-img" alt="Memory 1">
+                <img src="https://placehold.co/400x500/fbc2eb/a18cd1?text=Photo+2" class="float-img" alt="Memory 2">
+            </div>
+            <p class="journey-text">ရှေ့ဆက်ရမယ့် နေ့ရက်တွေတိုင်းမှာလည်း<br>အတူတူ လက်တွဲပြီး လျှောက်လှမ်းချင်ပါတယ်။ 💜</p>
         </div>
     </div>
 
@@ -803,6 +996,20 @@
                 mp3Screen.style.opacity = '1';
             }, 50);
 
+            // --- MP3 နောက်ခံတွင် အသည်းပုံများ ကြွေကျစေရန် ---
+            let mp3HeartTimer = setInterval(() => {
+                const bdayHeart = document.createElement("div");
+                bdayHeart.innerHTML = ["💜", "💖", "✨", "🌸"][Math.floor(Math.random() * 4)];
+                bdayHeart.className = "bday-heart";
+                bdayHeart.style.left = Math.random() * 100 + "vw";
+                bdayHeart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+                mp3Screen.appendChild(bdayHeart);
+                
+                setTimeout(() => {
+                    bdayHeart.remove();
+                }, 5000);
+            }, 300);
+
             // ယခုမှ သီချင်းစဖွင့်မည်
             const bgMusic = document.getElementById('bg-music');
             bgMusic.play().catch(e => console.log("Audio play prevented:", e));
@@ -840,6 +1047,11 @@
                     currentTimeEl.innerText = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
                 } else {
                     clearInterval(progressTimer); // 60 စက္ကန့်ပြည့်လျှင် ရပ်မည်
+                    clearInterval(imageTimer); // Slideshow ရပ်မည်
+                    
+                    // 1 မိနစ်ပြည့်သည်နှင့် ချက်ချင်း နောက်တစ်ဆင့် (Transition) သို့ကူးမည်
+                    clearInterval(mp3HeartTimer); // အသည်းပုံကြွေတာ ရပ်မည်
+                    showFinalTransition();
                 }
             }, 1000);
 
@@ -859,6 +1071,52 @@
                     clearInterval(imageTimer); // ပုံ ၂၀ ပြည့်လျှင် ရပ်မည်
                 }
             }, 3000);
+        }
+
+        function showFinalTransition() {
+            // MP3 screen ဖြည်းဖြည်းချင်း ဖျောက်မည်
+            document.getElementById('mp3-screen').style.opacity = '0';
+            
+            setTimeout(() => {
+                document.getElementById('mp3-screen').style.display = 'none';
+                
+                // Dudu Bubu Attack GIF (Transition screen) ပြမည်
+                const transScreen = document.getElementById('final-transition-screen');
+                transScreen.style.display = 'flex';
+                
+                // GIF လေး ၄ စက္ကန့်လောက် ပြပြီးရင် စာအိတ် (Envelope) screen သို့ ကူးမည်
+                setTimeout(() => {
+                    transScreen.style.display = 'none';
+                    document.getElementById('envelope-screen').style.display = 'flex';
+                }, 4000);
+            }, 1000); // MP3 opacity ဖျောက်ချိန်
+        }
+
+        function openEnvelope() {
+            const envelopeScreen = document.getElementById('envelope-screen');
+            const letterScreen = document.getElementById('letter-screen');
+            const letterPaper = document.getElementById('letter-paper');
+            const journeySection = document.getElementById('journey-section');
+            
+            // စာအိတ်ဖျောက်မည်
+            envelopeScreen.style.opacity = '0';
+            
+            setTimeout(() => {
+                envelopeScreen.style.display = 'none';
+                
+                // စာလွှာ ပြမည်
+                letterScreen.style.display = 'flex';
+                setTimeout(() => {
+                    letterScreen.style.opacity = '1';
+                    letterPaper.classList.add('open'); // Pop-up effect
+                    
+                    // စာလွှာပေါ်ပြီး ၁ စက္ကန့်အကြာတွင် Our Journey အပိုင်းကို ဖြည်းဖြည်းချင်း ပေါ်လာစေမည်
+                    setTimeout(() => {
+                        journeySection.classList.add('show');
+                    }, 1000);
+                    
+                }, 50);
+            }, 500);
         }
 
         // အသည်းပုံ ကွဲထွက်ပြီး အာဘွားစာသား ပေါ်လာမည့် Function
