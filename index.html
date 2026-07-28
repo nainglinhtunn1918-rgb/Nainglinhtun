@@ -286,11 +286,19 @@
             border: 4px solid rgba(255, 255, 255, 0.7); 
         }
 
-        .album-art img {
+        .slider-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: opacity 0.5s ease; 
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out; 
+        }
+
+        .slider-image.active {
+            opacity: 1;
         }
 
         .track-info h2 { 
@@ -683,7 +691,8 @@
         <div class="player-card">
             <!-- Slideshow ပုံပြမည့်နေရာ -->
             <div class="album-art">
-                <img id="slider-img" src="" alt="Our Memory">
+                <img id="slider-img-1" class="slider-image active" src="" alt="Our Memory">
+                <img id="slider-img-2" class="slider-image" src="" alt="Our Memory">
             </div>
             
             <div class="track-info">
@@ -995,17 +1004,19 @@
                 "photo16.jpg", "photo17.jpg", "photo18.jpg", "photo19.jpg", "photo20.jpg"
             ];
             
-            const sliderImg = document.getElementById('slider-img');
+            const sliderImg1 = document.getElementById('slider-img-1');
+            const sliderImg2 = document.getElementById('slider-img-2');
             const progressFill = document.getElementById('progress-fill');
             const currentTimeEl = document.getElementById('current-time');
             
             let imgIndex = 0;
+            let activeImg = 1;
             let elapsedSeconds = 0;
             const totalDuration = 60; 
             
-            sliderImg.src = images[imgIndex];
+            sliderImg1.src = images[imgIndex];
             // Image Error Fallback to avoid empty box if photo doesn't exist yet
-            sliderImg.onerror = function() {
+            sliderImg1.onerror = function() {
                 this.src = `https://placehold.co/600x600/f3e8ff/6B21A8?text=Photo+${imgIndex + 1}`;
             };
             
@@ -1031,12 +1042,21 @@
             const imageTimer = setInterval(() => {
                 imgIndex++;
                 if (imgIndex < images.length) {
-                    sliderImg.style.opacity = '0';
+                    const nextSrc = images[imgIndex];
                     
-                    setTimeout(() => {
-                        sliderImg.src = images[imgIndex];
-                        sliderImg.style.opacity = '1';
-                    }, 500);
+                    if (activeImg === 1) {
+                        sliderImg2.src = nextSrc;
+                        sliderImg2.onerror = function() { this.src = `https://placehold.co/600x600/f3e8ff/6B21A8?text=Photo+${imgIndex + 1}`; };
+                        sliderImg2.classList.add('active');
+                        sliderImg1.classList.remove('active');
+                        activeImg = 2;
+                    } else {
+                        sliderImg1.src = nextSrc;
+                        sliderImg1.onerror = function() { this.src = `https://placehold.co/600x600/f3e8ff/6B21A8?text=Photo+${imgIndex + 1}`; };
+                        sliderImg1.classList.add('active');
+                        sliderImg2.classList.remove('active');
+                        activeImg = 1;
+                    }
                 } else {
                     clearInterval(imageTimer); 
                 }
