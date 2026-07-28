@@ -41,7 +41,6 @@
         .sticker-container {
             width: 250px;
             margin-bottom: 30px;
-            /* Tenor embed container ကို fix လုပ်ရန် */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -145,25 +144,25 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 15px;
-        width: 100%;
-        margin-top: 10px;
-    }
+            width: 100%;
+            margin-top: 10px;
+        }
 
-    .option-btn {
-        background: #f8f9fa;
-        border: 2px solid #e9ecef;
-        padding: 15px 10px;
-        font-size: 1.1rem;
-        font-weight: bold;
-        color: #333;
-        border-radius: 15px;
-        cursor: pointer;
-        transition: all 0.2s;
-        word-break: break-word; /* စာရှည်လျှင် အောက်တစ်ကြောင်းဆင်းရန် (စာမပျက်စေရန်) */
-        line-height: 1.4;
-    }
+        .option-btn {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            padding: 15px 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #333;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+            word-break: break-word; /* စာရှည်လျှင် အောက်တစ်ကြောင်းဆင်းရန် (စာမပျက်စေရန်) */
+            line-height: 1.4;
+        }
 
-    .option-btn:active {
+        .option-btn:active {
             background: #e9ecef;
             transform: scale(0.95);
         }
@@ -241,7 +240,6 @@
             justify-content: center;
             width: 100%;
             height: 100vh;
-            /* Romantic ဆန်သော အရောင်စပ် နောက်ခံ (လှိုင်းကဲ့သို့ ရွေ့လျားနေမည်) */
             background: linear-gradient(-45deg, #ff9a9e, #fbc2eb, #a18cd1, #fad0c4);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
@@ -268,7 +266,7 @@
             max-width: 380px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.15), inset 0 0 0 2px rgba(255,255,255,0.5);
             text-align: center;
-            animation: breathing 6s ease-in-out infinite; /* အသက်ရှူသကဲ့သို့ ဖြည်းဖြည်းချင်း ကြီးလိုက်သေးလိုက်ဖြစ်မည် */
+            animation: breathing 6s ease-in-out infinite; 
         }
 
         @keyframes breathing {
@@ -285,7 +283,7 @@
             box-shadow: 0 15px 35px rgba(0,0,0,0.2);
             background-color: #f3e8ff;
             position: relative;
-            border: 4px solid rgba(255, 255, 255, 0.7); /* မှန်ဘောင်လေးကဲ့သို့ */
+            border: 4px solid rgba(255, 255, 255, 0.7); 
         }
 
         .album-art img {
@@ -340,7 +338,6 @@
             position: relative;
         }
         
-        /* Progress bar အစွန်က အလုံးလေး (Knob) */
         .progress-fill::after {
             content: '';
             position: absolute;
@@ -399,14 +396,13 @@
             box-shadow: 0 12px 30px rgba(161, 140, 209, 0.7);
         }
 
-        /* SVG Icons များအတွက် */
         .play-btn svg, .ctrl-btn svg {
             fill: currentColor;
         }
 
-        /* Heart Burst Animation Styles (အသစ်ထည့်ရန်) */
+        /* Heart Burst Animation Styles */
         .ctrl-btn, .play-btn {
-            position: relative; /* စာသားကို နေရာချရန် */
+            position: relative; 
         }
         
         .burst-text {
@@ -418,7 +414,7 @@
             font-family: 'Noto Sans Myanmar', sans-serif;
             font-weight: 900;
             font-size: 1.3rem;
-            color: #ff416c; /* ပန်းရောင်ရင့်ရင့် */
+            color: #ff416c; 
             pointer-events: none;
             text-shadow: 0 2px 6px rgba(255, 255, 255, 0.9);
             white-space: nowrap;
@@ -446,7 +442,7 @@
             100% { opacity: 0; transform: translate(-50%, -180%) scale(0.8); }
         }
 
-        /* --- Final Screens Styles (စာအိတ်နှင့် Transition အတွက်) --- */
+        /* --- Final Screens Styles --- */
         #final-transition-screen {
             display: none;
             flex-direction: column;
@@ -506,8 +502,8 @@
             z-index: 120;
             opacity: 0;
             transition: opacity 1.5s ease;
-            padding: 50px 20px; /* Scroll ဆွဲလို့ရအောင် Padding ပေးထားသည် */
-            overflow-y: auto; /* အောက်သို့ ဆွဲကြည့်နိုင်ရန် (Scroll) */
+            padding: 50px 20px; 
+            overflow-y: auto; 
         }
 
         .letter-paper {
@@ -523,7 +519,7 @@
             color: #4c1d95;
             line-height: 1.8;
             font-family: 'Noto Sans Myanmar', sans-serif;
-            margin-bottom: 60px; /* အောက်က Our Journey အပိုင်းနဲ့ ခွာထားရန် */
+            margin-bottom: 60px; 
             flex-shrink: 0;
         }
 
@@ -563,7 +559,7 @@
             gap: 25px;
             width: 100%;
             margin-bottom: 40px;
-            flex-wrap: wrap; /* ဖုန်းဖြင့်ကြည့်လျှင် ပုံတွေ အောက်တစ်ဆင့်ဆင်းရန် */
+            flex-wrap: wrap; 
         }
 
         .float-img {
@@ -575,14 +571,13 @@
             box-shadow: 0 12px 30px rgba(0,0,0,0.4);
         }
 
-        /* ပုံနှစ်ပုံကို ရှေ့နောက် မတူဘဲ လွင့်မျောနေစေရန် */
         .float-img:nth-child(1) {
             animation: floatLeft 4s ease-in-out infinite;
         }
 
         .float-img:nth-child(2) {
             animation: floatRight 4s ease-in-out infinite;
-            animation-delay: -2s; /* ဒုတိယပုံကို အချိန်နောက်ကျပြီးမှ စရန် */
+            animation-delay: -2s; 
         }
 
         @keyframes floatLeft {
@@ -634,7 +629,6 @@
     </style>
 </head>
 <body>
-
     <!-- Intro Screen -->
     <div id="intro-screen">
         <div class="sticker-container">
@@ -652,7 +646,7 @@
             <span id="feedback-emoji" class="feedback-emoji"></span>
         </div>
 
-        <!-- အလယ်မှာ Stickers များ (Embeds များကို သီးသန့်ခွဲထားပြီး လိုအပ်မှ ပြပါမည်) -->
+        <!-- အလယ်မှာ Stickers များ -->
         <div class="sticker-container">
             <!-- 1. Thinking Sticker -->
             <div id="sticker-thinking" class="quiz-sticker-wrapper active">
@@ -709,17 +703,14 @@
             <!-- အလန်းစား Player UI Icons များ (SVG) -->
             <div class="controls">
                 <div class="ctrl-btn" onclick="popKiss(this)">
-                    <!-- Heart Icon -->
                     <svg class="heart-icon" width="24" height="24" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
                     <span class="burst-text">အာဘွား</span>
                 </div>
                 <div class="play-btn" onclick="popKiss(this)">
-                    <!-- Bigger Heart Icon -->
                     <svg class="heart-icon" width="36" height="36" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
                     <span class="burst-text">အာဘွား</span>
                 </div>
                 <div class="ctrl-btn" onclick="popKiss(this)">
-                    <!-- Heart Icon -->
                     <svg class="heart-icon" width="24" height="24" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
                     <span class="burst-text">အာဘွား</span>
                 </div>
@@ -736,7 +727,7 @@
 
     <!-- Envelope Screen (စာအိတ်) -->
     <div id="envelope-screen">
-        <div class="envelope-btn" onclick="openEnvelope()">     
+        <div class="envelope-btn" onclick="openEnvelope()">💌</div>
         <div class="envelope-text">Tap to open</div>
     </div>
 
@@ -763,15 +754,14 @@
             <h2 class="journey-title">Our Journey</h2>
             <div class="floating-photos">
                 <!-- မိမိထည့်လိုသော ပုံ ၂ ပုံ၏ Link သို့မဟုတ် File နာမည်ကို ဤနေရာတွင် ပြင်ပါ -->
-                <img src="https://placehold.co/400x500/fbc2eb/a18cd1?text=Photo+1" class="float-img" alt="Memory 1">
-                <img src="https://placehold.co/400x500/fbc2eb/a18cd1?text=Photo+2" class="float-img" alt="Memory 2">
+                <img src="photo1.jpg" class="float-img" alt="Memory 1" onerror="this.src='https://placehold.co/400x500/fbc2eb/a18cd1?text=Photo+1'">
+                <img src="photo2.jpg" class="float-img" alt="Memory 2" onerror="this.src='https://placehold.co/400x500/fbc2eb/a18cd1?text=Photo+2'">
             </div>
             <p class="journey-text">ရှေ့ဆက်ရမယ့် နေ့ရက်တွေတိုင်းမှာလည်း<br>အတူတူ လက်တွဲပြီး လျှောက်လှမ်းချင်ပါတယ်။ 💜</p>
         </div>
     </div>
 
     <!-- Background Music (Ed Sheeran - Perfect) -->
-    <!-- မိမိစက်ထဲတွင် perfect.mp3 ဖိုင် ရှိရပါမည် -->
     <audio id="bg-music" loop>
         <source src="perfect.mp3" type="audio/mpeg">
     </audio>
@@ -818,7 +808,7 @@
         ];
 
         let currentQuestionIndex = 0;
-        let isWaitingForNext = false; // ခလုတ်တွေ အထပ်ထပ် မနှိပ်မိစေရန်
+        let isWaitingForNext = false; 
 
         function startQuiz() {
             document.getElementById('intro-screen').style.display = 'none';
@@ -827,12 +817,10 @@
         }
 
         function showSticker(stickerType) {
-            // Sticker ၃ ခုလုံးကို အရင်ဖျောက်ပါ
             document.getElementById('sticker-thinking').classList.remove('active');
             document.getElementById('sticker-angry').classList.remove('active');
             document.getElementById('sticker-kissing').classList.remove('active');
             
-            // လိုချင်တဲ့ Sticker ကို ပြပါ
             document.getElementById('sticker-' + stickerType).classList.add('active');
         }
 
@@ -840,16 +828,12 @@
             isWaitingForNext = false;
             const qData = questions[currentQuestionIndex];
             
-            // စဥ်းစားနေတဲ့ Sticker ပြန်ထားရန်
             showSticker('thinking');
             
-            // မေးခွန်းစာသား
             document.getElementById('question-text').innerText = qData.q;
             
-            // Feedback စာသား ရှင်းထုတ်ရန်
             resetFeedback();
 
-            // Options ခလုတ်များ ထုတ်ရန်
             const optionsGrid = document.getElementById('options-grid');
             optionsGrid.innerHTML = '';
             
@@ -863,7 +847,7 @@
         }
 
         function checkAnswer(selected, correct) {
-            if (isWaitingForNext) return; // စောင့်နေချိန်တွင် ထပ်နှိပ်၍မရပါ
+            if (isWaitingForNext) return; 
             
             const qData = questions[currentQuestionIndex];
             const feedbackText = document.getElementById('feedback-text');
@@ -872,14 +856,11 @@
             resetFeedback(); 
 
             setTimeout(() => {
-                // အဖြေတိုက်စစ်ခြင်း
                 if (selected === correct) {
                     
-                    // --- အဖြေမှန်လျှင် ---
                     isWaitingForNext = true;
-                    showSticker('kissing'); // Kissing sticker ပြမည်
+                    showSticker('kissing'); 
                     
-                    // ၄ ခုမြောက် (နောက်ဆုံး) မေးခွန်းဆိုလျှင် စာသားခွဲပြမည်
                     if (currentQuestionIndex === 3) {
                         feedbackText.innerText = "အဲ့ထက်တောင်ပိုသေးတယ်နော်";
                     } else {
@@ -890,22 +871,19 @@
                     feedbackEmoji.innerText = qData.rightEmoji;
                     feedbackEmoji.className = 'feedback-emoji show-feedback';
                     
-                    // ၂.၅ စက္ကန့်နေလျှင် နောက်မေးခွန်းသို့ ကူးရန်
                     setTimeout(() => {
                         currentQuestionIndex++;
                         if (currentQuestionIndex < questions.length) {
                             loadQuestion();
                         } else {
-                            // ၄ ခုလုံးမှန်သွားလျှင် Transition ဖြင့် Main Page သို့ သွားရန်
                             startTransition();
                         }
                     }, 2500);
 
                 } else {
                     
-                    // --- အဖြေမှားလျှင် ---
                     isWaitingForNext = true;
-                    showSticker('angry'); // Angry sticker ပြမည်
+                    showSticker('angry'); 
                     
                     feedbackText.innerText = qData.wrongMsg;
                     feedbackText.className = 'feedback-text text-error show-feedback';
@@ -913,13 +891,11 @@
                     feedbackEmoji.innerText = qData.wrongEmoji;
                     feedbackEmoji.className = 'feedback-emoji show-feedback';
                     
-                    // Screen တုန်ခါရန်
                     document.body.classList.add('shake');
                     setTimeout(() => {
                         document.body.classList.remove('shake');
                     }, 500);
                     
-                    // ခဏနေလျှင် ပြန်စဥ်းစားသော ပုံစံသို့ ပြန်ပြောင်းပြီး ထပ်ဖြေခွင့်ပေးရန်
                     setTimeout(() => {
                         if(currentQuestionIndex < questions.length) {
                              showSticker('thinking');
@@ -946,66 +922,56 @@
             
             overlay.style.display = 'flex';
             
-            // ခရမ်းရောင် အသည်းပုံလေး ကြီးလာမည့် Animation စရန်
             setTimeout(() => {
-                heart.style.transform = 'scale(200)'; // မျက်နှာပြင်အပြည့် ဖုံးသွားရန်
+                heart.style.transform = 'scale(200)'; 
             }, 50);
             
-            // မျက်နှာပြင်အပြည့် ဖုံးသွားချိန် (2.5s အကြာ) တွင်
             setTimeout(() => {
                 document.getElementById('quiz-screen').style.display = 'none';
                 
-                // Birthday Screen (စာသား) ကို ပြမည်
                 const birthdayScreen = document.getElementById('birthday-screen');
                 birthdayScreen.style.display = 'flex';
                 
-                // --- အသည်းပုံလေးတွေ၊ ပန်းပွင့်လေးတွေ ကြွေကျမည့် Animation စရန် ---
                 let bdayHeartTimer = setInterval(() => {
                     const bdayHeart = document.createElement("div");
                     bdayHeart.innerHTML = ["💜", "💖", "✨", "🌸"][Math.floor(Math.random() * 4)];
                     bdayHeart.className = "bday-heart";
-                    // ကျပန်း နေရာနဲ့ အရှိန်
                     bdayHeart.style.left = Math.random() * 100 + "vw";
-                    bdayHeart.style.animationDuration = (Math.random() * 2 + 3) + "s"; // 3s to 5s 
+                    bdayHeart.style.animationDuration = (Math.random() * 2 + 3) + "s"; 
                     birthdayScreen.appendChild(bdayHeart);
                     
                     setTimeout(() => {
                         bdayHeart.remove();
                     }, 5000);
-                }, 300); // 0.3 စက္ကန့် တစ်ခါ အသစ်ကြွေမည်
+                }, 300);
 
-                // Overlay အသည်းပုံကို ဖြည်းဖြည်းချင်း ဖျောက်မည်
                 overlay.style.transition = 'opacity 1.5s ease';
                 overlay.style.opacity = '0';
                 setTimeout(() => {
                     overlay.style.display = 'none';
                 }, 1500);
 
-                // ၃ စက္ကန့် ကြာပြီးနောက် Happy Birthday စာသားကို ဖြည်းဖြည်းချင်း မှိန်သွားစေမည်
                 setTimeout(() => {
                     birthdayScreen.style.opacity = '0';
                     
-                    // မှိန်သွားပြီးနောက် (1.5s အကြာ) MP3 Player သို့ ကူးမည်
                     setTimeout(() => {
-                        clearInterval(bdayHeartTimer); // အသည်းပုံကြွေတာ ရပ်မည်
+                        clearInterval(bdayHeartTimer); 
                         birthdayScreen.style.display = 'none';
                         startMP3Player();
                     }, 1500);
                 }, 3000);
                 
-            }, 2500); // Heart ကြီးလာမည့် ကြာချိန်စောင့်ရန်
+            }, 2500); 
         }
 
         function startMP3Player() {
             const mp3Screen = document.getElementById('mp3-screen');
             mp3Screen.style.display = 'flex';
             
-            // Player UI လေး ဖြည်းဖြည်းချင်း လင်းလာရန်
             setTimeout(() => {
                 mp3Screen.style.opacity = '1';
             }, 50);
 
-            // --- MP3 နောက်ခံတွင် အသည်းပုံများ ကြွေကျစေရန် ---
             let mp3HeartTimer = setInterval(() => {
                 const bdayHeart = document.createElement("div");
                 bdayHeart.innerHTML = ["💜", "💖", "✨", "🌸"][Math.floor(Math.random() * 4)];
@@ -1019,33 +985,14 @@
                 }, 5000);
             }, 300);
 
-            // ယခုမှ သီချင်းစဖွင့်မည်
             const bgMusic = document.getElementById('bg-music');
             bgMusic.play().catch(e => console.log("Audio play prevented:", e));
 
-            // ပုံ ၂၀ စာရင်း (မိမိထည့်ချင်သော ပုံ ၂၀ ရဲ့ နာမည်များကို အောက်တွင် ပြင်ထည့်ပါ)
-            // ပုံများကို index.html ဖိုင်ရှိသော Folder ထဲတွင် အတူတူထားပေးရပါမည်။
             const images = [
-                "photo1.jpg",  // ပုံ ၁
-                "photo2.jpg",  // ပုံ ၂
-                "photo3.jpg",  // ပုံ ၃
-                "photo4.jpg",  // ပုံ ၄
-                "photo5.jpg",  // ပုံ ၅
-                "photo6.jpg",  // ပုံ ၆
-                "photo7.jpg",  // ပုံ ၇
-                "photo8.jpg",  // ပုံ ၈
-                "photo9.jpg",  // ပုံ ၉
-                "photo10.jpg", // ပုံ ၁၀
-                "photo11.jpg", // ပုံ ၁၁
-                "photo12.jpg", // ပုံ ၁၂
-                "photo13.jpg", // ပုံ ၁၃
-                "photo14.jpg", // ပုံ ၁၄
-                "photo15.jpg", // ပုံ ၁၅
-                "photo16.jpg", // ပုံ ၁၆
-                "photo17.jpg", // ပုံ ၁၇
-                "photo18.jpg", // ပုံ ၁၈
-                "photo19.jpg", // ပုံ ၁၉
-                "photo20.jpg"  // ပုံ ၂၀
+                "photo1.jpg", "photo2.jpg", "photo3.jpg", "photo4.jpg", "photo5.jpg",
+                "photo6.jpg", "photo7.jpg", "photo8.jpg", "photo9.jpg", "photo10.jpg",
+                "photo11.jpg", "photo12.jpg", "photo13.jpg", "photo14.jpg", "photo15.jpg",
+                "photo16.jpg", "photo17.jpg", "photo18.jpg", "photo19.jpg", "photo20.jpg"
             ];
             
             const sliderImg = document.getElementById('slider-img');
@@ -1054,69 +1001,62 @@
             
             let imgIndex = 0;
             let elapsedSeconds = 0;
-            const totalDuration = 60; // 1 မိနစ်
+            const totalDuration = 60; 
             
-            // ပထမဆုံးပုံ တန်းပေါ်ရန်
             sliderImg.src = images[imgIndex];
+            // Image Error Fallback to avoid empty box if photo doesn't exist yet
+            sliderImg.onerror = function() {
+                this.src = `https://placehold.co/600x600/f3e8ff/6B21A8?text=Photo+${imgIndex + 1}`;
+            };
             
-            // 1 စက္ကန့်တိုင်း Progress bar ရွေ့ရန်နှင့် အချိန်ပြရန် (Timers)
             const progressTimer = setInterval(() => {
                 elapsedSeconds++;
                 
                 if (elapsedSeconds <= totalDuration) {
-                    // Progress Bar အရှည်တွက်ချက်ခြင်း
                     const percent = (elapsedSeconds / totalDuration) * 100;
                     progressFill.style.width = `${percent}%`;
                     
-                    // စက္ကန့်ကို mm:ss ပုံစံပြောင်းခြင်း
                     const mins = Math.floor(elapsedSeconds / 60);
                     const secs = elapsedSeconds % 60;
                     currentTimeEl.innerText = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
                 } else {
-                    clearInterval(progressTimer); // 60 စက္ကန့်ပြည့်လျှင် ရပ်မည်
-                    clearInterval(imageTimer); // Slideshow ရပ်မည်
+                    clearInterval(progressTimer); 
+                    clearInterval(imageTimer); 
                     
-                    // 1 မိနစ်ပြည့်သည်နှင့် ချက်ချင်း နောက်တစ်ဆင့် (Transition) သို့ကူးမည်
-                    clearInterval(mp3HeartTimer); // အသည်းပုံကြွေတာ ရပ်မည်
+                    clearInterval(mp3HeartTimer); 
                     showFinalTransition();
                 }
             }, 1000);
 
-            // ၃ စက္ကန့်တစ်ခါ ပုံပြောင်းမည့် Slideshow Effect
             const imageTimer = setInterval(() => {
                 imgIndex++;
                 if (imgIndex < images.length) {
-                    // ပုံဟောင်း မှိန်သွားမည်
                     sliderImg.style.opacity = '0';
                     
-                    // စက္ကန့်ဝက် (0.5s) နေလျှင် ပုံအသစ်ပြောင်းပြီး ပြန်လင်းလာမည်
                     setTimeout(() => {
                         sliderImg.src = images[imgIndex];
                         sliderImg.style.opacity = '1';
                     }, 500);
                 } else {
-                    clearInterval(imageTimer); // ပုံ ၂၀ ပြည့်လျှင် ရပ်မည်
+                    clearInterval(imageTimer); 
                 }
             }, 3000);
         }
 
         function showFinalTransition() {
-            // MP3 screen ဖြည်းဖြည်းချင်း ဖျောက်မည်
             document.getElementById('mp3-screen').style.opacity = '0';
             
             setTimeout(() => {
                 document.getElementById('mp3-screen').style.display = 'none';
                 
-                // Dudu Bubu Attack GIF (Transition screen) ပြမည်
                 const transScreen = document.getElementById('final-transition-screen');
                 transScreen.style.display = 'flex';
                 
-                // GIF လေး ၄ စက္ကန့်လောက် ပြပြီးရင် စာအိတ် (Envelope) screen သို့ ကူးမည်
                 setTimeout(() => {
                     transScreen.style.display = 'none';
                     document.getElementById('envelope-screen').style.display = 'flex';
                 }, 4000);
-            }, 1000); // MP3 opacity ဖျောက်ချိန်
+            }, 1000); 
         }
 
         function openEnvelope() {
@@ -1125,19 +1065,16 @@
             const letterPaper = document.getElementById('letter-paper');
             const journeySection = document.getElementById('journey-section');
             
-            // စာအိတ်ဖျောက်မည်
             envelopeScreen.style.opacity = '0';
             
             setTimeout(() => {
                 envelopeScreen.style.display = 'none';
                 
-                // စာလွှာ ပြမည်
                 letterScreen.style.display = 'flex';
                 setTimeout(() => {
                     letterScreen.style.opacity = '1';
-                    letterPaper.classList.add('open'); // Pop-up effect
+                    letterPaper.classList.add('open'); 
                     
-                    // စာလွှာပေါ်ပြီး ၁ စက္ကန့်အကြာတွင် Our Journey အပိုင်းကို ဖြည်းဖြည်းချင်း ပေါ်လာစေမည်
                     setTimeout(() => {
                         journeySection.classList.add('show');
                     }, 1000);
@@ -1146,21 +1083,18 @@
             }, 500);
         }
 
-        // အသည်းပုံ ကွဲထွက်ပြီး အာဘွားစာသား ပေါ်လာမည့် Function
         function popKiss(btn) {
-            // လောလောဆယ် animation လုပ်နေလျှင် ထပ်မလုပ်ရန် (ခလုတ်ကို အထပ်ထပ်မနှိပ်မိစေရန်)
             if (btn.classList.contains('shattered')) return;
             
             btn.classList.add('shattered');
             
-            // 1.5 စက္ကန့်အကြာ (Animation ပြီးသွားချိန်) တွင် မူလအခြေအနေသို့ ပြန်ထားရန်
             setTimeout(() => {
                 btn.classList.remove('shattered');
             }, 1500);
         }
     </script>
     
-    <!-- Tenor Sticker များ အလုပ်လုပ်စေရန် မဖြစ်မနေ ထည့်ရမည့် Script (အသစ်ထည့်ရန်) -->
+    <!-- Tenor Sticker များ အလုပ်လုပ်စေရန် မဖြစ်မနေ ထည့်ရမည့် Script -->
     <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
 </body>
 </html>
