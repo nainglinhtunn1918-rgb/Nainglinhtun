@@ -465,7 +465,7 @@
         #envelope-screen {
             display: none;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-end; /* Change to flex-end to push content down */
             align-items: center;
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
@@ -474,6 +474,7 @@
             background-size: cover;
             z-index: 110;
             transition: opacity 1s ease;
+            padding-bottom: 15vh; /* Add padding to position it above the bottom */
         }
 
         .envelope-btn {
@@ -520,20 +521,23 @@
         }
 
         .letter-paper {
-            background: #fffdf8;
+            background: rgba(0, 0, 0, 0.6); /* Change to dark with opacity */
+            backdrop-filter: blur(5px); /* Add a subtle blur effect to the background */
+            -webkit-backdrop-filter: blur(5px);
             padding: 40px 30px;
             border-radius: 15px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5); /* Stronger shadow for depth */
             max-width: 500px;
             width: 100%;
             text-align: center;
             transform: translateY(50px);
             transition: transform 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            color: #4c1d95;
+            color: #ffffff; /* Change text color to white */
             line-height: 1.8;
             font-family: 'Noto Sans Myanmar', sans-serif;
             margin-bottom: 60px; 
             flex-shrink: 0;
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
         }
 
         .letter-paper.open {
@@ -748,19 +752,19 @@
     <!-- Letter Screen (စာလွှာ) -->
     <div id="letter-screen">
         <div class="letter-paper" id="letter-paper">
-            <h2 style="font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: #9c27b0; margin-bottom: 20px;">Wish For You 💜</h2>
+            <h2 style="font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: #ff9a9e; margin-bottom: 20px; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">Wish For You 💜</h2>
             
-            <p style="font-size: 1.05rem; margin-bottom: 15px; text-align: justify;">Happy 22 Years Birthdayပါ အရမ်းချစ်ရတဲ့လင်းလေး။ ကိုယ်တိုင်ကိုယ်ကျ ဘေးနားမှာမရှိပေးနိုင်ပေမယ့် ကိုယ့်ရဲ့ စိတ်ရောနှလုံးသားပါ လင်းလေးအနားမှာ အမြဲတမ်းရှိနေတယ်ဆိုတာ သိစေချင်ပါတယ်။</p>
+            <p style="font-size: 1.05rem; margin-bottom: 15px; text-align: justify; color: #ffffff;">Happy 22 Years Birthdayပါ အရမ်းချစ်ရတဲ့လင်းလေး။ ကိုယ်တိုင်ကိုယ်ကျ ဘေးနားမှာမရှိပေးနိုင်ပေမယ့် ကိုယ့်ရဲ့ စိတ်ရောနှလုံးသားပါ လင်းလေးအနားမှာ အမြဲတမ်းရှိနေတယ်ဆိုတာ သိစေချင်ပါတယ်။</p>
             
-            <p style="font-size: 1.05rem; margin-bottom: 15px; text-align: justify;">ကို့ထက် ပိုပြီး ရင့်ကျက်တဲ့၊ ကိုယ့်ကို အမြဲတမ်း နားလည်မှုတွေနဲ့ ဖေးမပေးတဲ့ လင်းလေးကို ပိုင်ဆိုင်ခွင့်ရတာ ကို့အတွက်တော့ တကယ့်ကို ကံကောင်းခြင်းတစ်ခုပါပဲ။ ဝေးနေကြရလို့ သူများအတွဲတွေလို မွေးနေ့မှာ အတူတူမဖြတ်သန်းရဘူး၊ အတူတူ Surprise တွေ မလုပ်ပေးနိုင်ဘူးဆိုပေမယ့်၊ ကိုတက်နိုင်တဲ့နည်းနဲ့ပဲ လင်းလေးအတွက် အနွေးထွေးဆုံး မွေးနေ့ဆုတောင်းတွေကို ကိုယ်ပို့ပေးလိုက်ပါတယ်။ အဝေးကြီးကနေ လွမ်းနေရတဲ့ ဒီအလွမ်းတွေက ကိုတို့ရဲ့ အချစ်တွေကို ပိုပြီး ခိုင်မာစေမယ်လို့ ကို ယုံကြည်ထားပါတယ်။</p>
+            <p style="font-size: 1.05rem; margin-bottom: 15px; text-align: justify; color: #ffffff;">ကို့ထက် ပိုပြီး ရင့်ကျက်တဲ့၊ ကိုယ့်ကို အမြဲတမ်း နားလည်မှုတွေနဲ့ ဖေးမပေးတဲ့ လင်းလေးကို ပိုင်ဆိုင်ခွင့်ရတာ ကို့အတွက်တော့ တကယ့်ကို ကံကောင်းခြင်းတစ်ခုပါပဲ။ ဝေးနေကြရလို့ သူများအတွဲတွေလို မွေးနေ့မှာ အတူတူမဖြတ်သန်းရဘူး၊ အတူတူ Surprise တွေ မလုပ်ပေးနိုင်ဘူးဆိုပေမယ့်၊ ကိုတက်နိုင်တဲ့နည်းနဲ့ပဲ လင်းလေးအတွက် အနွေးထွေးဆုံး မွေးနေ့ဆုတောင်းတွေကို ကိုယ်ပို့ပေးလိုက်ပါတယ်။ အဝေးကြီးကနေ လွမ်းနေရတဲ့ ဒီအလွမ်းတွေက ကိုတို့ရဲ့ အချစ်တွေကို ပိုပြီး ခိုင်မာစေမယ်လို့ ကို ယုံကြည်ထားပါတယ်။</p>
             
-            <p style="font-size: 1.05rem; margin-bottom: 15px; text-align: justify;">ကို့ရဲ့ ဆိုးသမျှ၊ ရစ်သမျှ၊ သဝန်တိုသမျှတွေကို စိတ်ရှည်လက်ရှည်နဲ့ အမြဲတမ်း သည်းခံခွင့်လွှတ်ပေးတဲ့အတွက် ကျေးဇူးအများကြီးတင်ပါတယ် လင်းရယ်။ လင်းရဲ့ နားလည်ပေးမှုတွေ၊ အကြင်နာတွေက ကို့အတွက်တော့ တကယ့်ကို အဖိုးမဖြတ်နိုင်ပါဘူး။ လင်းလို လိမ္မာရေးခြားရှိပြီး ချစ်ဖို့ကောင်းတဲ့ ကောင်မလေးကို ကိုယ့်ဘဝထဲ ဝင်လာခွင့်ပေးလို့လည်း ကျေးဇူးပါနော်။</p>
+            <p style="font-size: 1.05rem; margin-bottom: 15px; text-align: justify; color: #ffffff;">ကို့ရဲ့ ဆိုးသမျှ၊ ရစ်သမျှ၊ သဝန်တိုသမျှတွေကို စိတ်ရှည်လက်ရှည်နဲ့ အမြဲတမ်း သည်းခံခွင့်လွှတ်ပေးတဲ့အတွက် ကျေးဇူးအများကြီးတင်ပါတယ် လင်းရယ်။ လင်းရဲ့ နားလည်ပေးမှုတွေ၊ အကြင်နာတွေက ကို့အတွက်တော့ တကယ့်ကို အဖိုးမဖြတ်နိုင်ပါဘူး။ လင်းလို လိမ္မာရေးခြားရှိပြီး ချစ်ဖို့ကောင်းတဲ့ ကောင်မလေးကို ကိုယ့်ဘဝထဲ ဝင်လာခွင့်ပေးလို့လည်း ကျေးဇူးပါနော်။</p>
             
-            <p style="font-size: 1.05rem; margin-bottom: 15px; text-align: justify;">ဒီ ၂၂ နှစ်ပြည့် မွေးနေ့ကစပြီး ရှေ့ဆက်မယ့် နှစ်ပေါင်းများစွာသော မွေးနေ့တွေတိုင်းမှာလည်း ကိုတို့နှစ်ယောက် အတူတူ လက်တွဲပြီး ဖြတ်သန်းသွားကြမယ်နော်။ ကိုလည်း လင်းလေးနဲ့ အမြန်ဆုံး အတူတူရှိနေနိုင်ဖို့၊ ကိုတို့ရဲ့ အနာဂတ်အတွက် အစွမ်းကုန် ကြိုးစားသွားပါမယ်။ ဘာတွေပဲဖြစ်လာဖြစ်လာ လင်းလေးရဲ့ လက်ကို ဘယ်တော့မှ မလွှတ်ဘူး၊ ရိုးမြေကျသက်ဆုံးတိုင် အတူတူပေါင်းသင်းသွားမယ်ဆိုတာ ကိုကို ထပ်ပြီး ကတိပေးပါတယ်။</p>
+            <p style="font-size: 1.05rem; margin-bottom: 15px; text-align: justify; color: #ffffff;">ဒီ ၂၂ နှစ်ပြည့် မွေးနေ့ကစပြီး ရှေ့ဆက်မယ့် နှစ်ပေါင်းများစွာသော မွေးနေ့တွေတိုင်းမှာလည်း ကိုတို့နှစ်ယောက် အတူတူ လက်တွဲပြီး ဖြတ်သန်းသွားကြမယ်နော်။ ကိုလည်း လင်းလေးနဲ့ အမြန်ဆုံး အတူတူရှိနေနိုင်ဖို့၊ ကိုတို့ရဲ့ အနာဂတ်အတွက် အစွမ်းကုန် ကြိုးစားသွားပါမယ်။ ဘာတွေပဲဖြစ်လာဖြစ်လာ လင်းလေးရဲ့ လက်ကို ဘယ်တော့မှ မလွှတ်ဘူး၊ ရိုးမြေကျသက်ဆုံးတိုင် အတူတူပေါင်းသင်းသွားမယ်ဆိုတာ ကိုကို ထပ်ပြီး ကတိပေးပါတယ်။</p>
             
-            <p style="font-size: 1.05rem; margin-bottom: 15px; text-align: justify;">ဒီနေ့မွေးနေ့လေးကစပြီး လင်းလေး မျှော်လင့်ထားတဲ့ ဆန္ဒတွေအကုန်လုံး ပြည့်ဝပါစေ။ စိတ်ချမ်းသာ၊ ကိုယ်ကျန်းမာနဲ့ အမြဲတမ်း ပြုံးပျော်နေရတဲ့ နေ့ရက်တွေကို ပိုင်ဆိုင်နိုင်ပါစေလို့ ကိုဆုတောင်းပေးလိုက်ပါတယ်။</p>
+            <p style="font-size: 1.05rem; margin-bottom: 15px; text-align: justify; color: #ffffff;">ဒီနေ့မွေးနေ့လေးကစပြီး လင်းလေး မျှော်လင့်ထားတဲ့ ဆန္ဒတွေအကုန်လုံး ပြည့်ဝပါစေ။ စိတ်ချမ်းသာ၊ ကိုယ်ကျန်းမာနဲ့ အမြဲတမ်း ပြုံးပျော်နေရတဲ့ နေ့ရက်တွေကို ပိုင်ဆိုင်နိုင်ပါစေလို့ ကိုဆုတောင်းပေးလိုက်ပါတယ်။</p>
             
-            <p style="margin-top: 20px; font-weight: bold; color: #ff416c; font-size: 1.1rem;">Happy 22nd Birthday ပါ Linnm လေး။ အရမ်းချစ်တယ်နော်။ 😘</p>
+            <p style="margin-top: 20px; font-weight: bold; color: #ff9a9e; font-size: 1.1rem; text-shadow: 0 1px 3px rgba(0,0,0,0.5);">Happy 22nd Birthday ပါ Linnm လေး။ အရမ်းချစ်တယ်နော်။ 😘</p>
         </div>
 
         <!-- အသစ်ထပ်တိုးထားသော Our Journey အပိုင်း -->
