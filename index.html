@@ -469,7 +469,9 @@
             align-items: center;
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
-            background: linear-gradient(135deg, #4c1d95, #6b21a8);
+            /* ခရမ်းရောင်အစား ကောင်မလေးပုံကို မျက်နှာပြင်အပြည့်ထည့်ထားပါသည် */
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('background.png') no-repeat center center;
+            background-size: cover;
             z-index: 110;
             transition: opacity 1s ease;
         }
@@ -506,7 +508,10 @@
             align-items: center;
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
-            background: linear-gradient(135deg, #4c1d95, #6b21a8);
+            /* ခရမ်းရောင်အစား ကောင်မလေးပုံကို မျက်နှာပြင်အပြည့်ထည့်ထားပါသည် (Scroll ဆွဲလျှင် ပုံမရွေ့အောင် fixed လုပ်ထားသည်) */
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('background.png') no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed;
             z-index: 120;
             opacity: 0;
             transition: opacity 1.5s ease;
