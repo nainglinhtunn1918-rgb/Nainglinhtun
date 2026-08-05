@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Anniversary / Birthday 💜</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Happy Birthday 💜</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@900&family=Great+Vibes&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@400;600;900&family=Great+Vibes&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     
     <style>
         * {
@@ -16,7 +16,7 @@
         }
 
         body {
-            background-color: #ffffff; 
+            background-color: #ffffff;
             color: #333;
             min-height: 100vh;
             display: flex;
@@ -24,8 +24,10 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
+            -webkit-tap-highlight-color: transparent;
         }
 
+        /* Intro Screen */
         #intro-screen {
             display: flex;
             flex-direction: column;
@@ -45,7 +47,7 @@
         }
         
         .sticker-container .tenor-gif-embed {
-            pointer-events: none; 
+            pointer-events: none;
         }
 
         .quiz-sticker-wrapper {
@@ -75,6 +77,7 @@
             transform: scale(0.95);
         }
 
+        /* Quiz Screen - ဖုန်းအတွက် အောက်ခြေလွတ်အောင် ပြင်ဆင်ထားသည် */
         #quiz-screen {
             display: none;
             flex-direction: column;
@@ -82,8 +85,9 @@
             justify-content: space-between;
             width: 100%;
             max-width: 500px;
-            height: 100vh;
-            padding: 30px 20px;
+            min-height: 100vh; /* Fallback */
+            min-height: 100dvh; /* Mobile screen အတွက် အတိအကျဖြစ်ရန် */
+            padding: 40px 20px 120px 20px; /* အောက်ခြေကို 120px အထိ ခွာထားပေးသည် */
             text-align: center;
         }
 
@@ -97,7 +101,7 @@
 
         .feedback-text {
             font-size: 1.8rem;
-            font-weight: 900; 
+            font-weight: 900;
             opacity: 0;
         }
 
@@ -129,7 +133,7 @@
             font-weight: bold;
             margin: 20px 0;
             color: #4C1D95;
-            min-height: 40px; 
+            min-height: 40px;
         }
 
         .options-grid {
@@ -137,7 +141,7 @@
             grid-template-columns: 1fr 1fr;
             gap: 15px;
             width: 100%;
-            margin-top: 10px;
+            margin-bottom: 20px; /* ခလုတ်တွေကို အောက်ဆုံးမကပ်စေရန် */
         }
 
         .option-btn {
@@ -150,7 +154,7 @@
             border-radius: 15px;
             cursor: pointer;
             transition: all 0.2s;
-            word-break: break-word; 
+            word-break: break-word;
             line-height: 1.4;
         }
 
@@ -175,6 +179,7 @@
             40%, 80% { transform: translateX(10px); }
         }
 
+        /* Birthday Screen */
         #birthday-screen {
             display: none;
             flex-direction: column;
@@ -189,7 +194,7 @@
             position: absolute;
             top: 0; left: 0;
             z-index: 50;
-            overflow: hidden; 
+            overflow: hidden;
         }
 
         .birthday-text {
@@ -221,6 +226,7 @@
             to { transform: translateY(110vh) rotate(360deg); }
         }
 
+        /* MP3 Player Screen */
         #mp3-screen {
             display: none;
             flex-direction: column;
@@ -254,7 +260,7 @@
             max-width: 380px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.15), inset 0 0 0 2px rgba(255,255,255,0.5);
             text-align: center;
-            animation: breathing 6s ease-in-out infinite; 
+            animation: breathing 6s ease-in-out infinite;
         }
 
         @keyframes breathing {
@@ -262,7 +268,9 @@
             50% { transform: scale(1.02); }
         }
 
+        /* Smooth Crossfade အတွက် ပြင်ဆင်ထားသော Album Art */
         .album-art {
+            position: relative;
             width: 100%;
             aspect-ratio: 1/1;
             border-radius: 20px;
@@ -270,19 +278,18 @@
             margin-bottom: 25px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.2);
             background-color: #f3e8ff;
-            position: relative;
-            border: 4px solid rgba(255, 255, 255, 0.7); 
+            border: 4px solid rgba(255, 255, 255, 0.7);
         }
 
         .slider-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
             position: absolute;
             top: 0;
             left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             opacity: 0;
-            transition: opacity 1.5s ease-in-out; 
+            transition: opacity 1s ease-in-out;
             z-index: 1;
         }
 
@@ -369,11 +376,6 @@
             position: relative;
         }
 
-        .ctrl-btn:hover {
-            background: rgba(255, 255, 255, 0.8);
-            transform: scale(1.05);
-        }
-
         .play-btn {
             width: 75px;
             height: 75px;
@@ -389,9 +391,8 @@
             position: relative;
         }
 
-        .play-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 12px 30px rgba(161, 140, 209, 0.7);
+        .play-btn:active, .ctrl-btn:active {
+            transform: scale(0.95);
         }
 
         .play-btn svg, .ctrl-btn svg {
@@ -407,7 +408,7 @@
             font-family: 'Noto Sans Myanmar', sans-serif;
             font-weight: 900;
             font-size: 1.3rem;
-            color: #ff416c; 
+            color: #ff416c;
             pointer-events: none;
             text-shadow: 0 2px 6px rgba(255, 255, 255, 0.9);
             white-space: nowrap;
@@ -446,18 +447,37 @@
             z-index: 100;
         }
 
+        /* Final Background Layer */
+        #final-background {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-image: url('background.png'); /* GitHub တွင် ရှိမည့်ပုံ */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -2;
+            display: none;
+        }
+
+        /* Final Dark Overlay Layer (စာဖတ်ရလွယ်အောင်) */
+        #final-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-color: rgba(0, 0, 0, 0.65); /* အမည်းရောင် အကြည် */
+            z-index: -1;
+            display: none;
+        }
+
         #envelope-screen {
             display: none;
             flex-direction: column;
-            justify-content: flex-end; 
+            justify-content: flex-end; /* အောက်သို့ ပို့ထားသည် */
             align-items: center;
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
-            background: url('background.png') no-repeat center center;
-            background-size: cover;
             z-index: 110;
+            padding-bottom: 20vh; /* ဖုန်းနှင့် PC တွင် မျက်နှာကို မကွယ်စေရန် အောက်ဘက်သို့ ချထားသည် */
             transition: opacity 1s ease;
-            padding-bottom: 15vh; 
         }
 
         .envelope-btn {
@@ -472,9 +492,9 @@
         }
 
         .envelope-text {
-            color: #f3e8ff;
+            color: #ffffff;
             font-size: 1.5rem;
-            margin-top: 20px;
+            margin-top: 10px;
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
             letter-spacing: 2px;
@@ -492,38 +512,39 @@
             align-items: center;
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
-            background: url('background.png') no-repeat center center;
-            background-size: cover;
-            background-attachment: fixed;
             z-index: 120;
             opacity: 0;
             transition: opacity 1.5s ease;
-            padding: 50px 20px; 
-            overflow-y: auto; 
+            padding: 50px 20px;
+            overflow-y: auto;
         }
 
         .letter-paper {
-            background: rgba(0, 0, 0, 0.6); 
-            backdrop-filter: blur(5px); 
-            -webkit-backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.45); /* အမည်းရောင် အကြည်အခံ */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15); /* အဖြူရောင် ဘောင်ပါးပါးလေး */
             padding: 40px 30px;
             border-radius: 15px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5); 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
             max-width: 500px;
             width: 100%;
-            text-align: center;
             transform: translateY(50px);
             transition: transform 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            color: #ffffff; 
+            color: #ffffff; /* စာသားအားလုံး အဖြူရောင် */
             line-height: 1.8;
             font-family: 'Noto Sans Myanmar', sans-serif;
-            margin-bottom: 60px; 
+            margin-bottom: 60px;
             flex-shrink: 0;
-            border: 1px solid rgba(255, 255, 255, 0.1); 
+            text-align: justify;
         }
 
         .letter-paper.open {
             transform: translateY(0);
+        }
+
+        .letter-paper p {
+            margin-bottom: 15px;
         }
 
         .journey-section {
@@ -546,7 +567,7 @@
         .journey-title {
             font-family: 'Great Vibes', cursive;
             font-size: 3.5rem;
-            color: #fbc2eb;
+            color: #ffb6c1; /* ပန်းရောင်ဖျော့ဖျော့ */
             margin-bottom: 40px;
             text-shadow: 0 4px 15px rgba(0,0,0,0.8);
         }
@@ -557,7 +578,7 @@
             gap: 25px;
             width: 100%;
             margin-bottom: 40px;
-            flex-wrap: wrap; 
+            flex-wrap: wrap;
         }
 
         .float-img {
@@ -565,7 +586,7 @@
             height: 220px;
             object-fit: cover;
             border-radius: 12px;
-            border: 6px solid #fff;
+            border: 4px solid rgba(255, 255, 255, 0.8);
             box-shadow: 0 12px 30px rgba(0,0,0,0.6);
         }
 
@@ -575,7 +596,7 @@
 
         .float-img:nth-child(2) {
             animation: floatRight 4s ease-in-out infinite;
-            animation-delay: -2s; 
+            animation-delay: -2s;
         }
 
         @keyframes floatLeft {
@@ -621,11 +642,14 @@
 
         @media (max-width: 600px) {
             .birthday-text { font-size: 3.5rem; }
+            .letter-paper { padding: 30px 20px; }
         }
 
     </style>
 </head>
 <body>
+
+    <!-- Intro Screen -->
     <div id="intro-screen">
         <div class="sticker-container">
             <div class="tenor-gif-embed" data-postid="12746691280645153574" data-share-method="host" data-aspect-ratio="1" data-width="100%"><a href="https://tenor.com/view/munch-face-gif-12746691280645153574">Munch Face Sticker</a>from <a href="https://tenor.com/search/munch+face-stickers">Munch Face Stickers</a></div>
@@ -633,6 +657,7 @@
         <button class="enter-btn" onclick="startQuiz()">Tap to here</button>
     </div>
 
+    <!-- Quiz Screen -->
     <div id="quiz-screen">
         <div id="feedback-container">
             <span id="feedback-text" class="feedback-text"></span>
@@ -652,19 +677,24 @@
         </div>
 
         <div id="question-text" class="question-text">မေးခွန်း...</div>
-        <div class="options-grid" id="options-grid"></div>
+
+        <div class="options-grid" id="options-grid">
+            <!-- JS မှ ထည့်ပေးမည် -->
+        </div>
     </div>
     
+    <!-- Birthday Message Screen -->
     <div id="birthday-screen">
         <h1 class="birthday-text">Happy Birthday<br>Linmm 💜</h1>
     </div>
 
+    <!-- MP3 Player Screen -->
     <div id="mp3-screen">
         <div class="player-card">
-            <!-- Slideshow ပုံပြမည့်နေရာ (ပုံ ၂ ပုံ ထပ်ထားသည်) -->
+            <!-- Smooth Crossfade Slider Images -->
             <div class="album-art">
-                <img id="slider-img-1" class="slider-image active" src="" alt="Our Memory" onerror="this.src='https://placehold.co/600x600/f3e8ff/6B21A8?text=Loading...'">
-                <img id="slider-img-2" class="slider-image" src="" alt="Our Memory" onerror="this.src='https://placehold.co/600x600/f3e8ff/6B21A8?text=Loading...'">
+                <img id="slider-img-1" class="slider-image active" src="" alt="Our Memory">
+                <img id="slider-img-2" class="slider-image" src="" alt="Our Memory">
             </div>
             
             <div class="track-info">
@@ -697,40 +727,47 @@
         </div>
     </div>
 
+    <!-- Final Transition Screen -->
     <div id="final-transition-screen">
         <div class="sticker-container" style="width: 300px;">
             <div class="tenor-gif-embed" data-postid="8423131164250366515" data-share-method="host" data-aspect-ratio="1" data-width="100%"><a href="https://tenor.com/view/dudu-bubu-bubu-dudu-dudu-run-dudu-running-bubu-attack-gif-8423131164250366515">Dudu Bubu Bubu Dudu GIF</a>from <a href="https://tenor.com/search/dudu+bubu-gifs">Dudu Bubu GIFs</a></div>
         </div>
     </div>
 
+    <!-- Background Images Layers for Final Screens -->
+    <div id="final-background"></div>
+    <div id="final-overlay"></div>
+
+    <!-- Envelope Screen -->
     <div id="envelope-screen">
         <div class="envelope-btn" onclick="openEnvelope()">💌</div>
         <div class="envelope-text">Tap to open</div>
     </div>
 
+    <!-- Letter Screen -->
     <div id="letter-screen">
         <div class="letter-paper" id="letter-paper">
-            <h2 style="font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: #ff9a9e; margin-bottom: 20px; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">Wish For You 💜</h2>
+            <h2 style="font-family: 'Great Vibes', cursive; font-size: 2.8rem; margin-bottom: 25px; text-align: center;">Wish For You</h2>
             
-            <p style="font-size: 1.05rem; margin-bottom: 15px; text-align: justify; color: #ffffff;">Happy 22 Years Birthdayပါ အရမ်းချစ်ရတဲ့လင်းလေး။ ကိုယ်တိုင်ကိုယ်ကျ ဘေးနားမှာမရှိပေးနိုင်ပေမယ့် ကိုယ့်ရဲ့ စိတ်ရောနှလုံးသားပါ လင်းလေးအနားမှာ အမြဲတမ်းရှိနေတယ်ဆိုတာ သိစေချင်ပါတယ်။</p>
+            <p>Happy 22 Years Birthdayပါ အရမ်းချစ်ရတဲ့လင်းလေး။ ကိုယ်တိုင်ကိုယ်ကျ ဘေးနားမှာမရှိပေးနိုင်ပေမယ့် ကိုယ့်ရဲ့ စိတ်ရောနှလုံးသားပါ လင်းလေးအနားမှာ အမြဲတမ်းရှိနေတယ်ဆိုတာ သိစေချင်ပါတယ်။</p>
             
-            <p style="font-size: 1.05rem; margin-bottom: 15px; text-align: justify; color: #ffffff;">ကို့ထက် ပိုပြီး ရင့်ကျက်တဲ့၊ ကိုယ့်ကို အမြဲတမ်း နားလည်မှုတွေနဲ့ ဖေးမပေးတဲ့ လင်းလေးကို ပိုင်ဆိုင်ခွင့်ရတာ ကို့အတွက်တော့ တကယ့်ကို ကံကောင်းခြင်းတစ်ခုပါပဲ။ ဝေးနေကြရလို့ သူများအတွဲတွေလို မွေးနေ့မှာ အတူတူမဖြတ်သန်းရဘူး၊ အတူတူ Surprise တွေ မလုပ်ပေးနိုင်ဘူးဆိုပေမယ့်၊ ကိုတက်နိုင်တဲ့နည်းနဲ့ပဲ လင်းလေးအတွက် အနွေးထွေးဆုံး မွေးနေ့ဆုတောင်းတွေကို ကိုယ်ပို့ပေးလိုက်ပါတယ်။ အဝေးကြီးကနေ လွမ်းနေရတဲ့ ဒီအလွမ်းတွေက ကိုတို့ရဲ့ အချစ်တွေကို ပိုပြီး ခိုင်မာစေမယ်လို့ ကို ယုံကြည်ထားပါတယ်။</p>
+            <p>ကို့ထက် ပိုပြီး ရင့်ကျက်တဲ့၊ ကိုယ့်ကို အမြဲတမ်း နားလည်မှုတွေနဲ့ ဖေးမပေးတဲ့ လင်းလေးကို ပိုင်ဆိုင်ခွင့်ရတာ ကို့အတွက်တော့ တကယ့်ကို ကံကောင်းခြင်းတစ်ခုပါပဲ။ ဝေးနေကြရလို့ သူများအတွဲတွေလို မွေးနေ့မှာ အတူတူမဖြတ်သန်းရဘူး၊ အတူတူ Surprise တွေ မလုပ်ပေးနိုင်ဘူးဆိုပေမယ့်၊ ကိုတက်နိုင်တဲ့နည်းနဲ့ပဲ လင်းလေးအတွက် အနွေးထွေးဆုံး မွေးနေ့ဆုတောင်းတွေကို ကိုယ်ပို့ပေးလိုက်ပါတယ်။ အဝေးကြီးကနေ လွမ်းနေရတဲ့ ဒီအလွမ်းတွေက ကိုတို့ရဲ့ အချစ်တွေကို ပိုပြီး ခိုင်မာစေမယ်လို့ ကို ယုံကြည်ထားပါတယ်။</p>
             
-            <p style="font-size: 1.05rem; margin-bottom: 15px; text-align: justify; color: #ffffff;">ကို့ရဲ့ ဆိုးသမျှ၊ ရစ်သမျှ၊ သဝန်တိုသမျှတွေကို စိတ်ရှည်လက်ရှည်နဲ့ အမြဲတမ်း သည်းခံခွင့်လွှတ်ပေးတဲ့အတွက် ကျေးဇူးအများကြီးတင်ပါတယ် လင်းရယ်။ လင်းရဲ့ နားလည်ပေးမှုတွေ၊ အကြင်နာတွေက ကို့အတွက်တော့ တကယ့်ကို အဖိုးမဖြတ်နိုင်ပါဘူး။ လင်းလို လိမ္မာရေးခြားရှိပြီး ချစ်ဖို့ကောင်းတဲ့ ကောင်မလေးကို ကိုယ့်ဘဝထဲ ဝင်လာခွင့်ပေးလို့လည်း ကျေးဇူးပါနော်။</p>
+            <p>ကို့ရဲ့ ဆိုးသမျှ၊ ရစ်သမျှ၊ သဝန်တိုသမျှတွေကို စိတ်ရှည်လက်ရှည်နဲ့ အမြဲတမ်း သည်းခံခွင့်လွှတ်ပေးတဲ့အတွက် ကျေးဇူးအများကြီးတင်ပါတယ် လင်းရယ်။ လင်းရဲ့ နားလည်ပေးမှုတွေ၊ အကြင်နာတွေက ကို့အတွက်တော့ တကယ့်ကို အဖိုးမဖြတ်နိုင်ပါဘူး။ လင်းလို လိမ္မာရေးခြားရှိပြီး ချစ်ဖို့ကောင်းတဲ့ ကောင်မလေးကို ကိုယ့်ဘဝထဲ ဝင်လာခွင့်ပေးလို့လည်း ကျေးဇူးပါနော်။</p>
             
-            <p style="font-size: 1.05rem; margin-bottom: 15px; text-align: justify; color: #ffffff;">ဒီ ၂၂ နှစ်ပြည့် မွေးနေ့ကစပြီး ရှေ့ဆက်မယ့် နှစ်ပေါင်းများစွာသော မွေးနေ့တွေတိုင်းမှာလည်း ကိုတို့နှစ်ယောက် အတူတူ လက်တွဲပြီး ဖြတ်သန်းသွားကြမယ်နော်။ ကိုလည်း လင်းလေးနဲ့ အမြန်ဆုံး အတူတူရှိနေနိုင်ဖို့၊ ကိုတို့ရဲ့ အနာဂတ်အတွက် အစွမ်းကုန် ကြိုးစားသွားပါမယ်။ ဘာတွေပဲဖြစ်လာဖြစ်လာ လင်းလေးရဲ့ လက်ကို ဘယ်တော့မှ မလွှတ်ဘူး၊ ရိုးမြေကျသက်ဆုံးတိုင် အတူတူပေါင်းသင်းသွားမယ်ဆိုတာ ကိုကို ထပ်ပြီး ကတိပေးပါတယ်။</p>
+            <p>ဒီ ၂၂ နှစ်ပြည့် မွေးနေ့ကစပြီး ရှေ့ဆက်မယ့် နှစ်ပေါင်းများစွာသော မွေးနေ့တွေတိုင်းမှာလည်း ကိုတို့နှစ်ယောက် အတူတူ လက်တွဲပြီး ဖြတ်သန်းသွားကြမယ်နော်။ ကိုလည်း လင်းလေးနဲ့ အမြန်ဆုံး အတူတူရှိနေနိုင်ဖို့၊ ကိုတို့ရဲ့ အနာဂတ်အတွက် အစွမ်းကုန် ကြိုးစားသွားပါမယ်။ ဘာတွေပဲဖြစ်လာဖြစ်လာ လင်းလေးရဲ့ လက်ကို ဘယ်တော့မှ မလွှတ်ဘူး၊ ရိုးမြေကျသက်ဆုံးတိုင် အတူတူပေါင်းသင်းသွားမယ်ဆိုတာ ကိုကို ထပ်ပြီး ကတိပေးပါတယ်။</p>
             
-            <p style="font-size: 1.05rem; margin-bottom: 15px; text-align: justify; color: #ffffff;">ဒီနေ့မွေးနေ့လေးကစပြီး လင်းလေး မျှော်လင့်ထားတဲ့ ဆန္ဒတွေအကုန်လုံး ပြည့်ဝပါစေ။ စိတ်ချမ်းသာ၊ ကိုယ်ကျန်းမာနဲ့ အမြဲတမ်း ပြုံးပျော်နေရတဲ့ နေ့ရက်တွေကို ပိုင်ဆိုင်နိုင်ပါစေလို့ ကိုဆုတောင်းပေးလိုက်ပါတယ်။</p>
+            <p>ဒီနေ့မွေးနေ့လေးကစပြီး လင်းလေး မျှော်လင့်ထားတဲ့ ဆန္ဒတွေအကုန်လုံး ပြည့်ဝပါစေ။ စိတ်ချမ်းသာ၊ ကိုယ်ကျန်းမာနဲ့ အမြဲတမ်း ပြုံးပျော်နေရတဲ့ နေ့ရက်တွေကို ပိုင်ဆိုင်နိုင်ပါစေလို့ ကိုဆုတောင်းပေးလိုက်ပါတယ်။</p>
             
-            <p style="margin-top: 20px; font-weight: bold; color: #ff9a9e; font-size: 1.1rem; text-shadow: 0 1px 3px rgba(0,0,0,0.5);">Happy 22nd Birthday ပါ Linnm လေး။ အရမ်းချစ်တယ်နော်။ 😘</p>
+            <p style="text-align: center; font-weight: bold; font-size: 1.1rem; margin-top: 25px; color: #ffb6c1;">Happy 22nd Birthday ပါ Linnm လေး။ အရမ်းချစ်တယ်နော်။</p>
         </div>
 
         <div class="journey-section" id="journey-section">
             <h2 class="journey-title">Our Journey</h2>
             <div class="floating-photos">
-                <!-- Journey ပုံသီးသန့် (Slideshow ထဲက ပုံ ၂၀ နဲ့ မရောစေရန်) -->
-                <img src="journey1.webp" class="float-img" alt="Memory 1" onerror="this.src='https://placehold.co/400x500/fbc2eb/a18cd1?text=Journey+1'">
-                <img src="journey2.webp" class="float-img" alt="Memory 2" onerror="this.src='https://placehold.co/400x500/fbc2eb/a18cd1?text=Journey+2'">
+                <!-- Journey အတွက် သီးသန့်ပုံ (၂) ပုံ -->
+                <img src="journey1.webp" class="float-img" alt="Memory 1" onerror="this.src='https://placehold.co/400x500/000/fff?text=journey1.webp'">
+                <img src="journey2.webp" class="float-img" alt="Memory 2" onerror="this.src='https://placehold.co/400x500/000/fff?text=journey2.webp'">
             </div>
             <p class="journey-text">ရှေ့ဆက်ရမယ့် နေ့ရက်တွေတိုင်းမှာလည်း<br>အတူတူ လက်တွဲပြီး လျှောက်လှမ်းချင်ပါတယ်။ 💜</p>
         </div>
@@ -741,6 +778,7 @@
         <source src="perfect.mp3" type="audio/mpeg">
     </audio>
 
+    <!-- Heart Transition Overlay -->
     <div id="heart-overlay">
         <div class="big-heart">💜</div>
     </div>
@@ -782,7 +820,7 @@
         ];
 
         let currentQuestionIndex = 0;
-        let isWaitingForNext = false; 
+        let isWaitingForNext = false;
 
         function startQuiz() {
             document.getElementById('intro-screen').style.display = 'none';
@@ -794,18 +832,14 @@
             document.getElementById('sticker-thinking').classList.remove('active');
             document.getElementById('sticker-angry').classList.remove('active');
             document.getElementById('sticker-kissing').classList.remove('active');
-            
             document.getElementById('sticker-' + stickerType).classList.add('active');
         }
 
         function loadQuestion() {
             isWaitingForNext = false;
             const qData = questions[currentQuestionIndex];
-            
             showSticker('thinking');
-            
             document.getElementById('question-text').innerText = qData.q;
-            
             resetFeedback();
 
             const optionsGrid = document.getElementById('options-grid');
@@ -821,7 +855,7 @@
         }
 
         function checkAnswer(selected, correct) {
-            if (isWaitingForNext) return; 
+            if (isWaitingForNext) return;
             
             const qData = questions[currentQuestionIndex];
             const feedbackText = document.getElementById('feedback-text');
@@ -832,7 +866,7 @@
             setTimeout(() => {
                 if (selected === correct) {
                     isWaitingForNext = true;
-                    showSticker('kissing'); 
+                    showSticker('kissing');
                     
                     if (currentQuestionIndex === 3) {
                         feedbackText.innerText = "အဲ့ထက်တောင်ပိုသေးတယ်နော်";
@@ -855,11 +889,9 @@
 
                 } else {
                     isWaitingForNext = true;
-                    showSticker('angry'); 
-                    
+                    showSticker('angry');
                     feedbackText.innerText = qData.wrongMsg;
                     feedbackText.className = 'feedback-text text-error show-feedback';
-                    
                     feedbackEmoji.innerText = qData.wrongEmoji;
                     feedbackEmoji.className = 'feedback-emoji show-feedback';
                     
@@ -891,16 +923,14 @@
         function startTransition() {
             const overlay = document.getElementById('heart-overlay');
             const heart = overlay.querySelector('.big-heart');
-            
             overlay.style.display = 'flex';
             
             setTimeout(() => {
-                heart.style.transform = 'scale(200)'; 
+                heart.style.transform = 'scale(200)';
             }, 50);
             
             setTimeout(() => {
                 document.getElementById('quiz-screen').style.display = 'none';
-                
                 const birthdayScreen = document.getElementById('birthday-screen');
                 birthdayScreen.style.display = 'flex';
                 
@@ -912,37 +942,30 @@
                     bdayHeart.style.animationDuration = (Math.random() * 2 + 3) + "s"; 
                     birthdayScreen.appendChild(bdayHeart);
                     
-                    setTimeout(() => {
-                        bdayHeart.remove();
-                    }, 5000);
+                    setTimeout(() => { bdayHeart.remove(); }, 5000);
                 }, 300);
 
                 overlay.style.transition = 'opacity 1.5s ease';
                 overlay.style.opacity = '0';
-                setTimeout(() => {
-                    overlay.style.display = 'none';
-                }, 1500);
+                setTimeout(() => { overlay.style.display = 'none'; }, 1500);
 
                 setTimeout(() => {
                     birthdayScreen.style.opacity = '0';
-                    
                     setTimeout(() => {
-                        clearInterval(bdayHeartTimer); 
+                        clearInterval(bdayHeartTimer);
                         birthdayScreen.style.display = 'none';
                         startMP3Player();
                     }, 1500);
                 }, 3000);
                 
-            }, 2500); 
+            }, 2500);
         }
 
         function startMP3Player() {
             const mp3Screen = document.getElementById('mp3-screen');
             mp3Screen.style.display = 'flex';
             
-            setTimeout(() => {
-                mp3Screen.style.opacity = '1';
-            }, 50);
+            setTimeout(() => { mp3Screen.style.opacity = '1'; }, 50);
 
             let mp3HeartTimer = setInterval(() => {
                 const bdayHeart = document.createElement("div");
@@ -952,18 +975,13 @@
                 bdayHeart.style.animationDuration = (Math.random() * 2 + 3) + "s";
                 mp3Screen.appendChild(bdayHeart);
                 
-                setTimeout(() => {
-                    bdayHeart.remove();
-                }, 5000);
+                setTimeout(() => { bdayHeart.remove(); }, 5000);
             }, 300);
 
-            // Play background music
             const bgMusic = document.getElementById('bg-music');
-            if(bgMusic) {
-                bgMusic.play().catch(e => console.log("Audio play prevented:", e));
-            }
+            bgMusic.play().catch(e => console.log("Audio play prevented:", e));
 
-            // ပုံ ၂၀ စာရင်း 
+            // photo1.webp မှ photo20.webp အထိ စာရင်း
             const images = [];
             for(let i=1; i<=20; i++) {
                 images.push(`photo${i}.webp`);
@@ -971,67 +989,56 @@
             
             const sliderImg1 = document.getElementById('slider-img-1');
             const sliderImg2 = document.getElementById('slider-img-2');
-            const progressFill = document.getElementById('progress-fill');
-            const currentTimeEl = document.getElementById('current-time');
             
-            let imgIndex = 0;
-            let activeImg = 1;
-            let elapsedSeconds = 0;
-            const totalDuration = 60; 
+            let currentImgIdx = 0;
+            let activeImgEl = 1;
             
             // ပထမဆုံးပုံ တန်းပေါ်ရန်
             sliderImg1.src = images[0];
-            sliderImg1.classList.add('active');
-            
-            // ဒုတိယပုံကို ကြိုတင် Load လုပ်ထားရန်
-            if (images.length > 1) {
-                sliderImg2.src = images[1];
-            }
-            
+            sliderImg1.onerror = function() { this.src = 'https://placehold.co/600x600/000/fff?text=photo1.webp'; };
+
+            // ၃ စက္ကန့်တစ်ခါ Smooth Crossfade လုပ်မည့် Effect
+            const imageTimer = setInterval(() => {
+                currentImgIdx++;
+                if (currentImgIdx < images.length) {
+                    const nextImgSrc = images[currentImgIdx];
+                    const currentEl = document.getElementById(`slider-img-${activeImgEl}`);
+                    const nextEl = document.getElementById(`slider-img-${activeImgEl === 1 ? 2 : 1}`);
+                    
+                    nextEl.src = nextImgSrc;
+                    nextEl.onerror = function() { this.src = `https://placehold.co/600x600/000/fff?text=photo${currentImgIdx + 1}.webp`; };
+                    
+                    // ပုံအသစ်ကို လင်းလာစေပြီး၊ ပုံဟောင်းကို မှိန်သွားစေမည်
+                    nextEl.classList.add('active');
+                    currentEl.classList.remove('active');
+                    
+                    activeImgEl = activeImgEl === 1 ? 2 : 1;
+                } else {
+                    clearInterval(imageTimer);
+                }
+            }, 3000);
+
+            // Progress Bar (1 မိနစ်)
+            let elapsedSeconds = 0;
+            const totalDuration = 60;
+            const progressFill = document.getElementById('progress-fill');
+            const currentTimeEl = document.getElementById('current-time');
+
             const progressTimer = setInterval(() => {
                 elapsedSeconds++;
-                
                 if (elapsedSeconds <= totalDuration) {
                     const percent = (elapsedSeconds / totalDuration) * 100;
                     progressFill.style.width = `${percent}%`;
-                    
                     const mins = Math.floor(elapsedSeconds / 60);
                     const secs = elapsedSeconds % 60;
                     currentTimeEl.innerText = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
                 } else {
-                    clearInterval(progressTimer); 
-                    clearInterval(imageTimer); 
-                    clearInterval(mp3HeartTimer); 
+                    clearInterval(progressTimer);
+                    clearInterval(imageTimer);
+                    clearInterval(mp3HeartTimer);
                     showFinalTransition();
                 }
             }, 1000);
-
-            // ၃ စက္ကန့်တစ်ခါ ပုံပြောင်းမည့် Slideshow (Crossfade Effect)
-            const imageTimer = setInterval(() => {
-                imgIndex++;
-                if (imgIndex < images.length) {
-                    if (activeImg === 1) {
-                        sliderImg2.classList.add('active');
-                        sliderImg1.classList.remove('active');
-                        activeImg = 2;
-                        
-                        // နောက်လာမည့်ပုံကို ကြိုတင် Load ထည့်မည်
-                        if (imgIndex + 1 < images.length) {
-                            setTimeout(() => { sliderImg1.src = images[imgIndex + 1]; }, 1500);
-                        }
-                    } else {
-                        sliderImg1.classList.add('active');
-                        sliderImg2.classList.remove('active');
-                        activeImg = 1;
-                        
-                        if (imgIndex + 1 < images.length) {
-                            setTimeout(() => { sliderImg2.src = images[imgIndex + 1]; }, 1500);
-                        }
-                    }
-                } else {
-                    clearInterval(imageTimer); 
-                }
-            }, 3000);
         }
 
         function showFinalTransition() {
@@ -1039,15 +1046,18 @@
             
             setTimeout(() => {
                 document.getElementById('mp3-screen').style.display = 'none';
-                
                 const transScreen = document.getElementById('final-transition-screen');
                 transScreen.style.display = 'flex';
                 
+                // နောက်ခံပုံနှင့် အမည်းရောင်အလွှာ (Background layers) များကို ကြိုဖွင့်ထားမည်
+                document.getElementById('final-background').style.display = 'block';
+                document.getElementById('final-overlay').style.display = 'block';
+
                 setTimeout(() => {
                     transScreen.style.display = 'none';
                     document.getElementById('envelope-screen').style.display = 'flex';
                 }, 4000);
-            }, 1000); 
+            }, 1000);
         }
 
         function openEnvelope() {
@@ -1060,25 +1070,22 @@
             
             setTimeout(() => {
                 envelopeScreen.style.display = 'none';
-                
                 letterScreen.style.display = 'flex';
+                
                 setTimeout(() => {
                     letterScreen.style.opacity = '1';
-                    letterPaper.classList.add('open'); 
+                    letterPaper.classList.add('open');
                     
                     setTimeout(() => {
                         journeySection.classList.add('show');
                     }, 1000);
-                    
                 }, 50);
             }, 500);
         }
 
         function popKiss(btn) {
             if (btn.classList.contains('shattered')) return;
-            
             btn.classList.add('shattered');
-            
             setTimeout(() => {
                 btn.classList.remove('shattered');
             }, 1500);
