@@ -77,7 +77,7 @@
             transform: scale(0.95);
         }
 
-        /* Quiz Screen - ဖုန်းအတွက် အောက်ခြေလွတ်အောင် ပြင်ဆင်ထားသည် */
+        /* Quiz Screen */
         #quiz-screen {
             display: none;
             flex-direction: column;
@@ -85,9 +85,9 @@
             justify-content: space-between;
             width: 100%;
             max-width: 500px;
-            min-height: 100vh; /* Fallback */
-            min-height: 100dvh; /* Mobile screen အတွက် အတိအကျဖြစ်ရန် */
-            padding: 40px 20px 120px 20px; /* အောက်ခြေကို 120px အထိ ခွာထားပေးသည် */
+            min-height: 100vh; 
+            min-height: 100dvh; 
+            padding: 40px 20px 120px 20px; 
             text-align: center;
         }
 
@@ -141,7 +141,7 @@
             grid-template-columns: 1fr 1fr;
             gap: 15px;
             width: 100%;
-            margin-bottom: 20px; /* ခလုတ်တွေကို အောက်ဆုံးမကပ်စေရန် */
+            margin-bottom: 20px;
         }
 
         .option-btn {
@@ -268,7 +268,7 @@
             50% { transform: scale(1.02); }
         }
 
-        /* Smooth Crossfade အတွက် ပြင်ဆင်ထားသော Album Art */
+        /* --- Smooth Crossfade Album Art (Fixed) --- */
         .album-art {
             position: relative;
             width: 100%;
@@ -289,13 +289,13 @@
             height: 100%;
             object-fit: cover;
             opacity: 0;
-            transition: opacity 1s ease-in-out;
+            transition: opacity 1s ease-in-out; 
             z-index: 1;
         }
 
         .slider-image.active {
             opacity: 1;
-            z-index: 2;
+            z-index: 2; /* အပေါ်ကနေ ပေါ်နေအောင် */
         }
 
         .track-info h2 { 
@@ -451,7 +451,7 @@
         #final-background {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
-            background-image: url('background.png'); /* GitHub တွင် ရှိမည့်ပုံ */
+            background-image: url('background.png'); 
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -459,11 +459,11 @@
             display: none;
         }
 
-        /* Final Dark Overlay Layer (စာဖတ်ရလွယ်အောင်) */
+        /* Final Dark Overlay Layer - အလင်းလျော့ပေးထားသည် (opacity 0.4) */
         #final-overlay {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
-            background-color: rgba(0, 0, 0, 0.65); /* အမည်းရောင် အကြည် */
+            background-color: rgba(0, 0, 0, 0.4); 
             z-index: -1;
             display: none;
         }
@@ -471,12 +471,12 @@
         #envelope-screen {
             display: none;
             flex-direction: column;
-            justify-content: flex-end; /* အောက်သို့ ပို့ထားသည် */
+            justify-content: flex-end; 
             align-items: center;
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
             z-index: 110;
-            padding-bottom: 20vh; /* ဖုန်းနှင့် PC တွင် မျက်နှာကို မကွယ်စေရန် အောက်ဘက်သို့ ချထားသည် */
+            padding-bottom: 20vh; 
             transition: opacity 1s ease;
         }
 
@@ -520,10 +520,10 @@
         }
 
         .letter-paper {
-            background: rgba(0, 0, 0, 0.45); /* အမည်းရောင် အကြည်အခံ */
+            background: rgba(0, 0, 0, 0.45); 
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.15); /* အဖြူရောင် ဘောင်ပါးပါးလေး */
+            border: 1px solid rgba(255, 255, 255, 0.15); 
             padding: 40px 30px;
             border-radius: 15px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.5);
@@ -531,7 +531,7 @@
             width: 100%;
             transform: translateY(50px);
             transition: transform 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            color: #ffffff; /* စာသားအားလုံး အဖြူရောင် */
+            color: #ffffff; 
             line-height: 1.8;
             font-family: 'Noto Sans Myanmar', sans-serif;
             margin-bottom: 60px;
@@ -567,7 +567,7 @@
         .journey-title {
             font-family: 'Great Vibes', cursive;
             font-size: 3.5rem;
-            color: #ffb6c1; /* ပန်းရောင်ဖျော့ဖျော့ */
+            color: #ffb6c1; 
             margin-bottom: 40px;
             text-shadow: 0 4px 15px rgba(0,0,0,0.8);
         }
@@ -654,6 +654,7 @@
         <div class="sticker-container">
             <div class="tenor-gif-embed" data-postid="12746691280645153574" data-share-method="host" data-aspect-ratio="1" data-width="100%"><a href="https://tenor.com/view/munch-face-gif-12746691280645153574">Munch Face Sticker</a>from <a href="https://tenor.com/search/munch+face-stickers">Munch Face Stickers</a></div>
         </div>
+        <!-- First user interaction triggers audio -->
         <button class="enter-btn" onclick="startQuiz()">Tap to here</button>
     </div>
 
@@ -691,7 +692,7 @@
     <!-- MP3 Player Screen -->
     <div id="mp3-screen">
         <div class="player-card">
-            <!-- Smooth Crossfade Slider Images -->
+            <!-- Smooth Crossfade Slider Images (2 Images to swap) -->
             <div class="album-art">
                 <img id="slider-img-1" class="slider-image active" src="" alt="Our Memory">
                 <img id="slider-img-2" class="slider-image" src="" alt="Our Memory">
@@ -747,7 +748,7 @@
     <!-- Letter Screen -->
     <div id="letter-screen">
         <div class="letter-paper" id="letter-paper">
-            <h2 style="font-family: 'Great Vibes', cursive; font-size: 2.8rem; margin-bottom: 25px; text-align: center;">Wish For You</h2>
+            <h2 style="font-family: 'Great Vibes', cursive; font-size: 2.8rem; margin-bottom: 25px; text-align: center; color: #ffb6c1;">Wish For You</h2>
             
             <p>Happy 22 Years Birthdayပါ အရမ်းချစ်ရတဲ့လင်းလေး။ ကိုယ်တိုင်ကိုယ်ကျ ဘေးနားမှာမရှိပေးနိုင်ပေမယ့် ကိုယ့်ရဲ့ စိတ်ရောနှလုံးသားပါ လင်းလေးအနားမှာ အမြဲတမ်းရှိနေတယ်ဆိုတာ သိစေချင်ပါတယ်။</p>
             
@@ -765,7 +766,6 @@
         <div class="journey-section" id="journey-section">
             <h2 class="journey-title">Our Journey</h2>
             <div class="floating-photos">
-                <!-- Journey အတွက် သီးသန့်ပုံ (၂) ပုံ -->
                 <img src="journey1.webp" class="float-img" alt="Memory 1" onerror="this.src='https://placehold.co/400x500/000/fff?text=journey1.webp'">
                 <img src="journey2.webp" class="float-img" alt="Memory 2" onerror="this.src='https://placehold.co/400x500/000/fff?text=journey2.webp'">
             </div>
@@ -821,8 +821,17 @@
 
         let currentQuestionIndex = 0;
         let isWaitingForNext = false;
+        let bgMusicElement = null;
 
         function startQuiz() {
+            // Audio workaround for browsers: Play slightly and pause immediately on first user click
+            bgMusicElement = document.getElementById('bg-music');
+            bgMusicElement.volume = 0;
+            bgMusicElement.play().then(() => {
+                bgMusicElement.pause();
+                bgMusicElement.volume = 1; // reset volume for later
+            }).catch(e => console.log("Audio workaround init failed:", e));
+
             document.getElementById('intro-screen').style.display = 'none';
             document.getElementById('quiz-screen').style.display = 'flex';
             loadQuestion();
@@ -978,8 +987,10 @@
                 setTimeout(() => { bdayHeart.remove(); }, 5000);
             }, 300);
 
-            const bgMusic = document.getElementById('bg-music');
-            bgMusic.play().catch(e => console.log("Audio play prevented:", e));
+            // Now safely play the music (already initialized on first click)
+            if (bgMusicElement) {
+                bgMusicElement.play().catch(e => console.log("Final audio play prevented:", e));
+            }
 
             // photo1.webp မှ photo20.webp အထိ စာရင်း
             const images = [];
@@ -997,21 +1008,25 @@
             sliderImg1.src = images[0];
             sliderImg1.onerror = function() { this.src = 'https://placehold.co/600x600/000/fff?text=photo1.webp'; };
 
-            // ၃ စက္ကန့်တစ်ခါ Smooth Crossfade လုပ်မည့် Effect
+            // ၃ စက္ကန့်တစ်ခါ Smooth Crossfade လုပ်မည့် Effect (Fixed to prevent old image flash)
             const imageTimer = setInterval(() => {
                 currentImgIdx++;
                 if (currentImgIdx < images.length) {
                     const nextImgSrc = images[currentImgIdx];
+                    
+                    // Determine which img tag is currently hidden to load the next image into it
                     const currentEl = document.getElementById(`slider-img-${activeImgEl}`);
                     const nextEl = document.getElementById(`slider-img-${activeImgEl === 1 ? 2 : 1}`);
                     
+                    // 1. Preload the new image into the hidden tag
                     nextEl.src = nextImgSrc;
                     nextEl.onerror = function() { this.src = `https://placehold.co/600x600/000/fff?text=photo${currentImgIdx + 1}.webp`; };
                     
-                    // ပုံအသစ်ကို လင်းလာစေပြီး၊ ပုံဟောင်းကို မှိန်သွားစေမည်
+                    // 2. Crossfade: make the new image active (z-index 2, opacity 1) and the old image fade out
                     nextEl.classList.add('active');
                     currentEl.classList.remove('active');
                     
+                    // Toggle active element tracker
                     activeImgEl = activeImgEl === 1 ? 2 : 1;
                 } else {
                     clearInterval(imageTimer);
