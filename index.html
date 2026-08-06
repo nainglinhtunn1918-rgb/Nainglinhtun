@@ -268,7 +268,7 @@
             50% { transform: scale(1.02); }
         }
 
-        /* Smooth Crossfade (True Crossfade Layers) အတွက် ပြင်ဆင်ထားသော Album Art */
+        /* Smooth Crossfade (True Layering) အတွက် ပုံ ၂ ထပ် */
         .album-art {
             position: relative;
             width: 100%;
@@ -468,7 +468,7 @@
             display: none;
         }
 
-        /* Final Dark Overlay Layer */
+        /* Final Dark Overlay Layer (Opacity ကို 0.4 သို့ ပြောင်းထားသည်) */
         #final-overlay {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
@@ -781,7 +781,7 @@
         </div>
     </div>
 
-    <!-- Background Music -->
+    <!-- Background Music (Audio ကို အသံတိုးတိုးနဲ့ ကြိုဖွင့်ထားရန်) -->
     <audio id="bg-music" loop>
         <source src="perfect.mp3" type="audio/mpeg">
     </audio>
@@ -831,6 +831,11 @@
         let isWaitingForNext = false;
         
         function startQuiz() {
+            // Browser Auto-play block ကို ကျော်လွှားရန် ပထမဆုံး Click မှာ သီချင်းကို တိတ်တိတ်လေး စဖွင့်ထားပါသည်
+            const bgMusic = document.getElementById('bg-music');
+            bgMusic.volume = 0; // အသံပိတ်ထားမည်
+            bgMusic.play().catch(e => console.log("Audio play prevented:", e));
+
             document.getElementById('intro-screen').style.display = 'none';
             document.getElementById('quiz-screen').style.display = 'flex';
             loadQuestion();
@@ -944,8 +949,10 @@
                 const birthdayScreen = document.getElementById('birthday-screen');
                 birthdayScreen.style.display = 'flex';
                 
-                // === သီချင်းကို ဒီနေရာရောက်မှသာ စတင်ဖွင့်မည် ===
+                // === ဒီနေရာရောက်မှ သီချင်းအသံကို ကျယ်သွားစေမည် (Volume = 1) ===
                 const bgMusic = document.getElementById('bg-music');
+                bgMusic.volume = 1;
+                bgMusic.currentTime = 0; // အစကနေပြန်ဖွင့်မည်
                 bgMusic.play().catch(e => console.log("Audio play prevented:", e));
                 
                 let bdayHeartTimer = setInterval(() => {
