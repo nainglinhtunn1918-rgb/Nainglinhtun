@@ -268,7 +268,7 @@
             50% { transform: scale(1.02); }
         }
 
-        /* Smooth Crossfade အတွက် ပြင်ဆင်ထားသော Album Art (Single Image Toggle) */
+        /* Smooth Crossfade (True Crossfade Layers) အတွက် ပြင်ဆင်ထားသော Album Art */
         .album-art {
             position: relative;
             width: 100%;
@@ -288,14 +288,23 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            /* Transition ကို ညင်သာအောင် 1.5 စက္ကန့် ပေးထားသည် */
-            transition: opacity 1.5s ease-in-out;
-            opacity: 1; 
         }
 
-        /* ပုံမှိန်သွားစေရန် */
-        .slider-image.fade-out {
+        #slider-bg {
+            z-index: 1;
+        }
+
+        #slider-fg {
+            transition: opacity 1.5s ease-in-out;
+            z-index: 2;
+        }
+
+        .fg-hidden {
             opacity: 0;
+        }
+
+        .fg-visible {
+            opacity: 1;
         }
 
         .track-info h2 { 
@@ -691,9 +700,10 @@
     <!-- MP3 Player Screen -->
     <div id="mp3-screen">
         <div class="player-card">
-            <!-- Smooth Crossfade အတွက် Single Image -->
+            <!-- Smooth Crossfade (True Layering) အတွက် ပုံ ၂ ထပ် -->
             <div class="album-art">
-                <img id="slider-img" class="slider-image" src="" alt="Our Memory">
+                <img id="slider-bg" class="slider-image" src="" alt="Our Memory">
+                <img id="slider-fg" class="slider-image fg-hidden" src="" alt="Our Memory">
             </div>
             
             <div class="track-info">
@@ -934,7 +944,7 @@
                 const birthdayScreen = document.getElementById('birthday-screen');
                 birthdayScreen.style.display = 'flex';
                 
-                // === သီချင်းကို ဒီနေရာရောက်မှသာ (Happy Birthday မျက်နှာပြင်ပေါ်မှသာ) စတင်ဖွင့်မည် ===
+                // === သီချင်းကို ဒီနေရာရောက်မှသာ စတင်ဖွင့်မည် ===
                 const bgMusic = document.getElementById('bg-music');
                 bgMusic.play().catch(e => console.log("Audio play prevented:", e));
                 
@@ -988,28 +998,36 @@
                 images.push(`photo${i}.webp`);
             }
             
-            const sliderImg = document.getElementById('slider-img');
+            // Background နဲ့ Foreground ပုံ ၂ ထပ်
+            const bgImg = document.getElementById('slider-bg');
+            const fgImg = document.getElementById('slider-fg');
             let currentImgIdx = 0;
             
-            // ပထမဆုံးပုံ တန်းပေါ်ရန်
-            sliderImg.src = images[currentImgIdx];
-            sliderImg.onerror = function() { this.src = 'https://placehold.co/600x600/000/fff?text=photo1.webp'; };
+            // ပထမဆုံးပုံကို နောက်ခံ (Background) တွင် တန်းပေါ်ရန်
+            bgImg.src = images[currentImgIdx];
+            bgImg.onerror = function() { this.src = 'https://placehold.co/600x600/000/fff?text=photo1.webp'; };
 
-            // === ပုံအကူးအပြောင်းကို img tag တစ်ခုတည်းဖြင့် Smooth (Opacity) ဖြစ်အောင် ပြင်ဆင်ထားခြင်း ===
+            // === ပုံအကူးအပြောင်းကို True Crossfade ဖြင့် အသေအချာ Smooth ဖြစ်အောင် ပြင်ဆင်ထားခြင်း ===
             const imageTimer = setInterval(() => {
                 currentImgIdx++;
                 if (currentImgIdx < images.length) {
                     
-                    // ၁။ အရင်ပုံကို မှိန်သွားစေမည်
-                    sliderImg.classList.add('fade-out');
+                    // ၁။ အပေါ်ယံပုံ (Foreground) တွင် ပုံအသစ်ကို ထည့်မည်
+                    fgImg.src = images[currentImgIdx];
+                    fgImg.onerror = function() { this.src = `https://placehold.co/600x600/000/fff?text=photo${currentImgIdx + 1}.webp`; };
                     
-                    // ၂။ ပုံမှိန်သွားပြီးချိန် (1.5s အကြာ) တွင် ပုံသစ်ပြောင်းပြီး ပြန်လင်းလာစေမည်
+                    // ၂။ အပေါ်ယံပုံကို ဖြည်းဖြည်းချင်း လင်းလာစေမည် (Fade In)
                     setTimeout(() => {
-                        sliderImg.src = images[currentImgIdx];
-                        sliderImg.onerror = function() { this.src = `https://placehold.co/600x600/000/fff?text=photo${currentImgIdx + 1}.webp`; };
-                        
-                        sliderImg.classList.remove('fade-out');
-                    }, 1500);
+                        fgImg.classList.replace('fg-hidden', 'fg-visible');
+                    }, 50);
+                    
+                    // ၃။ ပုံအသစ် လုံးဝလင်းလာပြီးချိန် (1.5s အကြာ) တွင်
+                    // နောက်ခံပုံ (Background) ကိုပါ ပုံအသစ်အဖြစ်ပြောင်းပြီး အပေါ်ယံပုံကို ချက်ချင်း ဖျောက်လိုက်မည် (နောက်တစ်ကြိမ်အတွက် အဆင်သင့်ဖြစ်စေရန်)
+                    setTimeout(() => {
+                        bgImg.src = images[currentImgIdx];
+                        bgImg.onerror = function() { this.src = `https://placehold.co/600x600/000/fff?text=photo${currentImgIdx + 1}.webp`; };
+                        fgImg.classList.replace('fg-visible', 'fg-hidden');
+                    }, 1550);
                     
                 } else {
                     clearInterval(imageTimer);
@@ -1047,7 +1065,7 @@
                 const transScreen = document.getElementById('final-transition-screen');
                 transScreen.style.display = 'flex';
                 
-                // နောက်ခံပုံနှင့် အမည်းရောင်အလွှာ များကို ကြိုဖွင့်ထားမည်
+                // နောက်ခံပုံနှင့် အမည်းရောင်အလွှာ (Background layers) များကို ကြိုဖွင့်ထားမည်
                 document.getElementById('final-background').style.display = 'block';
                 document.getElementById('final-overlay').style.display = 'block';
 
