@@ -834,6 +834,7 @@
             // Browser Auto-play block ကို ကျော်လွှားရန် ပထမဆုံး Click မှာ သီချင်းကို တိတ်တိတ်လေး စဖွင့်ထားပါသည်
             const bgMusic = document.getElementById('bg-music');
             bgMusic.volume = 0; // အသံပိတ်ထားမည်
+            bgMusic.muted = true; // လုံးဝ အသံမထွက်အောင် သေချာပိတ်ထားမည်
             bgMusic.play().catch(e => console.log("Audio play prevented:", e));
 
             document.getElementById('intro-screen').style.display = 'none';
@@ -951,6 +952,7 @@
                 
                 // === ဒီနေရာရောက်မှ သီချင်းအသံကို ကျယ်သွားစေမည် (Volume = 1) ===
                 const bgMusic = document.getElementById('bg-music');
+                bgMusic.muted = false; // Mute ကိုပြန်ဖြုတ်မည်
                 bgMusic.volume = 1;
                 bgMusic.currentTime = 0; // အစကနေပြန်ဖွင့်မည်
                 bgMusic.play().catch(e => console.log("Audio play prevented:", e));
